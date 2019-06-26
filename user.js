@@ -9,8 +9,8 @@
 // @icon         https://jimboy3100.github.io/banners/CropedImage128.gif
 // @match        https://agar.io/*
 // @match        https://play.google.com/*
-// @downloadURL  https://saekiamae.github.io/ogario-vsa/user.js
-// @updateURL    https://saekiamae.github.io/ogario-vsa/user.js
+// @downloadURL  https://saekiamae.github.io/user.js
+// @updateURL    https://saekiamae.github.io/user.js
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @connect      https://saekiamae.github.io
@@ -37,7 +37,7 @@ document.documentElement.innerHTML = "";
 
 GM_xmlhttpRequest({
     method: "GET",
-    url: "https://saekiamae.github.io/ogario-vsa/LMexpress.html",
+    url: "https://saekiamae.github.io/LMexpress.html",
     onload: function(legend) {
         var doc = inject(legend.responseText);
         document.open();
