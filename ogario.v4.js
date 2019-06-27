@@ -5259,10 +5259,12 @@ var thelegendmodproject = function(t, e, i) {
             'playerNick': '',
             'playerPosition': 0,
             'leaderboard': [],
+            'biggerSTEDCellsCache': [],
             'biggerSTECellsCache': [],
             'biggerCellsCache': [],
             'smallerCellsCache': [],
             'STECellsCache': [],
+            'STEDCellsCache': [],
             'STE': 0,
             'autoZoom': false,
             'zoomValue': 0.1,
@@ -6204,10 +6206,12 @@ var thelegendmodproject = function(t, e, i) {
             'compareCells': function() {
                 if (this.play && (v.oppColors || v.oppRings || v.splitRange)) {
                     if (v.oppRings || v.splitRange) {
+                        this.biggerSTEDCellsCache = [];
                         this.biggerSTECellsCache = [];
                         this.biggerCellsCache = [];
                         this.smallerCellsCache = [];
                         this.STECellsCache = [];
+                        this.STEDCellsCache = [];
                     }
                     var t = 0;
                     for (; t < this.cells.length; t++) {
@@ -6233,26 +6237,34 @@ var thelegendmodproject = function(t, e, i) {
                 }
             },
             'cacheCells': function(t, e, i, s, o) {
-                return s >= 2.5 ? void this.biggerSTECellsCache.push({
+                return s >= 5.32 ? void this.biggerSTEDCellsCache.push({
                     'x': t,
                     'y': e,
                     'size': i
-                }) : s >= 1.25 ? void this.biggerCellsCache.push({
+                }) : s >= 2.66 ? void this.biggerSTECellsCache.push({
                     'x': t,
                     'y': e,
                     'size': i
-                }) : s < 1.25 && s > 0.75 ? void 0 : s > o ? void this.smallerCellsCache.push({
+                }) : s >= 1.33 ? void this.biggerCellsCache.push({
                     'x': t,
                     'y': e,
                     'size': i
-                }) : void this.STECellsCache.push({
+                }) : s < 1.33 && s > 0.75 ? void 0 : s>0.375 ? void this.smallerCellsCache.push({
+                    'x': t,
+                    'y': e,
+                    'size': i
+                }) : s>0.1875 ? void this.STECellsCache.push({
+                    'x': t,
+                    'y': e,
+                    'size': i
+                }): void this.STEDCellsCache.push({
                     'x': t,
                     'y': e,
                     'size': i
                 });
             },
             'setCellOppColor': function(t, e, i) {
-                return t ? ogarcopythelb.color : e > 11 ? '#FF008C' : e >= 2.5 ? '#BE00FF' : e >= 1.25 ? '#ff8000' : e < 1.25 && e > 0.75 ? '#FFDC00' : e > i ? '#00C8FF' : '#64FF00';
+                return t ? ogarcopythelb.color : e > 11 ? '#FF008C' : e >= 2.5 ? '#BE00FF' : e >= 1.25 ? '#FF0A00' : e < 1.25 && e > 0.75 ? '#FFDC00' : e > i ? '#00C8FF' : '#64FF00';
             },
             'getCursorPosition': function() {
                 this.cursorX = (this.clientX - this.canvasWidth / 2) / this.viewScale + this.viewX;
@@ -6422,11 +6434,12 @@ var thelegendmodproject = function(t, e, i) {
                     if (M.play) {
                         if (v.splitRange) {
                             this.drawSplitRange(this.ctx, M.biggerSTECellsCache, M.playerCells, M.selectBiggestCell);
+                            this.drawSplitRange(this.ctx, M.biggerSTEDCellsCache, M.playerCells, M.selectBiggestCell);
                             //console.log(M.playerCells[M.selectBiggestCell.length-1].size);
-                            this.drawDoubleSplitRange(this.ctx, M.biggerSTECellsCache, M.playerCells, M.selectBiggestCell);
+                            this.drawDoubleSplitRange(this.ctx, M.biggerSTEDCellsCache, M.playerCells, M.selectBiggestCell);
                         }
                         if (v.oppRings) {
-                            this.drawOppRings(this.ctx, this.scale, M.biggerSTECellsCache, M.biggerCellsCache, M.smallerCellsCache, M.STECellsCache);
+                            this.drawOppRings(this.ctx, this.scale, M.biggerSTEDCellsCache, M.biggerSTECellsCache, M.biggerCellsCache, M.smallerCellsCache, M.STECellsCache, M.STEDCellsCache);
 
                         }
                         if (v.cursorTracking) {
@@ -6737,14 +6750,14 @@ var thelegendmodproject = function(t, e, i) {
                     }
                 },
                 'drawSplitRange': function(t, e, i, s, o) {
-                    if (this.drawCircles(t, e, 760, 4, 0.4, '#BE00FF'), i.length) {
+                    if (this.drawCircles(t, e, 760, 4, 0.4, '#ff0000'), i.length) {
                         var a = s ? i.length - 1 : 0;
                         t.lineWidth = 6, t.globalAlpha = g.darkTheme ? 0.7 : 0.35, t.strokeStyle = g.splitRangeColor, t.beginPath(), t.arc(i[a].x, i[a].y, i[a].size + 760, 0, this.pi2, false), t.closePath(), t.stroke();
                     }
                     t.globalAlpha = 1, o && (e = []);
                 },
                 'drawDoubleSplitRange': function(t, e, i, s, o) {
-                    if (this.drawCircles(t, e, 760, 4, 0.4, '#BE00FF'), i.length) {
+                    if (this.drawCircles(t, e, 760, 4, 0.4, '#ff00ff'), i.length) {
                         //this.drawSplitRange(this.ctx, M.biggerSTECellsCache, M.playerCells, M.selectBiggestCell);
 
                         var a = s ? i.length - 1 : 0;
@@ -6764,13 +6777,15 @@ var thelegendmodproject = function(t, e, i) {
                         e = [];
                     }
                 },
-                'drawOppRings': function(t, e, i, s, o, a, n) {
+                'drawOppRings': function(t, e, ip, i, s, o, a, ap, n) {
                     var r = 14 + 2 / e;
                     var l = 12 + 1 / e;
-                    this.drawCircles(t, i, r, l, 0.75, '#BE00FF');
-                    this.drawCircles(t, s, r, l, 0.75, '#FF0A00');
-                    this.drawCircles(t, o, r, l, 0.75, '#00C8FF');
-                    this.drawCircles(t, a, r, l, 0.75, '#64FF00');
+                    this.drawCircles(t, ip, r, l, 0.75, '#ff00ff');
+                    this.drawCircles(t, i, r, l, 0.75, '#ff0000');
+                    this.drawCircles(t, s, r, l, 0.75, '#ff8000');
+                    this.drawCircles(t, o, r, l, 0.75, '#008000');
+                    this.drawCircles(t, a, r, l, 0.75, '#00ff00');
+                    this.drawCircles(t, ap, r, l, 0.75, '#0000ff');
                     if (n) {
                         i = [], s = [], o = [], a = [];
                     }
