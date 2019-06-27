@@ -6773,7 +6773,7 @@ var thelegendmodproject = function(t, e, i) {
 
                         var a = s ? i.length - 1 : 0;
                         //console.log(i[a].size);
-                        if (i[a].size >= 200) {
+                        if (i[a].size >= 400) {
                             t.lineWidth = 6,
                                 t.globalAlpha = g.darkTheme ? 0.7 : 0.35,
                                 t.strokeStyle = g.splitRangeColor;
@@ -6781,15 +6781,6 @@ var thelegendmodproject = function(t, e, i) {
                             t.arc(i[a].x, i[a].y, 2 * i[a].size + 760, 0, this.pi2, false);
                             t.closePath();
                             t.stroke();
-                            t.lineWidth = 6,
-                                t.globalAlpha = g.darkTheme ? 0.7 : 0.35,
-                                t.strokeStyle = '#ffff00';
-                            t.beginPath();
-                            t.arc(i[a].x, i[a].y, 1.5 * i[a].size + 2*760, 0, this.pi2, false);
-                            t.closePath();
-                            t.stroke();
-                        }
-                    }
                     t.globalAlpha = 1;
                     if (o) {
                         e = [];
