@@ -6781,6 +6781,8 @@ var thelegendmodproject = function(t, e, i) {
                             t.arc(i[a].x, i[a].y, 2 * i[a].size + 760, 0, this.pi2, false);
                             t.closePath();
                             t.stroke();
+                        }
+                    }
                     t.globalAlpha = 1;
                     if (o) {
                         e = [];
