@@ -6486,11 +6486,11 @@ var thelegendmodproject = function(t, e, i) {
                 if (v.showStatsSTE) {
                     var i = this.selectBiggestCell ? this.playerMaxMass : this.playerMinMass;
                     // this.STE = i > 35 ? ~~(i * (i < 1000 ? 0.35 : 0.38)) : null; //Sonia2
-                    this.STE = i*0.375; //Sonia2
-                    this.MTE = i*0.75; //Sonia2
-                    this.BMTE = i*1.33; //Sonia2
-                    this.BSTE = i*2.66; //Sonia2
-                    this.TTE = i/6; //Sonia2
+                    this.STE = Math.floor(i*0.375); //Sonia2
+                    this.MTE = Math.floor(i*0.75); //Sonia2
+                    this.BMTE = Math.ceil(i*1.33); //Sonia2
+                    this.BSTE = Math.ceil(i*2.66); //Sonia2
+                    this.TTE = Math.ceil(i/6); //Sonia2
                 }
             },
             'compareCells': function() {
