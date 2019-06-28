@@ -2587,7 +2587,7 @@ var thelegendmodproject = function(t, e, i) {
 						t += h.score + ': ' + i.playerScore
 						}						
 						if (v.showStatsSTE && i.STE){
-							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE + ' | ◉➚◎: ' + i.PTE//Sonia2
+							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE + ' | ➚◎➘: ' + i.PTE//Sonia2
 						} 
 						if (v.showStatsN16 && i.playerSplitCells){
 							t += ' | ' + i.playerSplitCells + '/16'
