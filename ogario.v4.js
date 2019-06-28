@@ -2587,7 +2587,7 @@ var thelegendmodproject = function(t, e, i) {
 						t += h.score + ': ' + i.playerScore
 						}						
 						if (v.showStatsSTE && i.STE){
-							t += ' | STE: ' + i.STE
+							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE //Sonia2
 						} 
 						if (v.showStatsN16 && i.playerSplitCells){
 							t += ' | ' + i.playerSplitCells + '/16'
@@ -3069,7 +3069,7 @@ var thelegendmodproject = function(t, e, i) {
 						this.addOptions(["showGrid", "showBgSectors", "showMapBorders", "borderGlow"], "gridGroup"),
 						this.addOptions(["disableChat", "chatSounds", "chatEmoticons", "showChatImages", "showChatVideos", "showChatBox"], "chatGroup"),
 						this.addOptions(["showMiniMap", "showMiniMapGrid", "showMiniMapGuides", "showExtraMiniMapGuides", "showMiniMapGhostCells", "oneColoredTeammates"], "miniMapGroup"),
-						this.addOptions(["oppColors", "oppRings", "virColors", "splitRange","qdsplitRange","sdsplitRange", "virusesRange", "cursorTracking", "teammatesInd", "showGhostCells", "showGhostCellsInfo"], "helpersGroup"),
+						this.addOptions(["oppColors", "oppRings", "virColors", "splitRange","qdsplitRange","sdsplitRange", "virusesRange", "cursorTracking", "teammatesInd", "showGhostCells", "showGhostCellsInfo"], "helpersGroup"), //Sonia2
 						this.addOptions(["mouseSplit", "mouseFeed", "mouseInvert"], "mouseGroup"),
 						this.addOptions(["showTop5", "showTargeting", "showLbData", "centeredLb", "normalLb", "fpsAtTop"], "hudGroup"),
 						this.addOptions(["showStats", "showStatsMass", "showStatsSTE", "showStatsN16", "showStatsFPS", "showTime"], "statsGroup"),
@@ -6485,7 +6485,12 @@ var thelegendmodproject = function(t, e, i) {
                 }
                 if (v.showStatsSTE) {
                     var i = this.selectBiggestCell ? this.playerMaxMass : this.playerMinMass;
-                    this.STE = i > 35 ? ~~(i * (i < 1000 ? 0.35 : 0.38)) : null;
+                    // this.STE = i > 35 ? ~~(i * (i < 1000 ? 0.35 : 0.38)) : null; //Sonia2
+                    this.STE = i*0.375; //Sonia2
+                    this.MTE = i*0.75; //Sonia2
+                    this.BMTE = i*1.33; //Sonia2
+                    this.BSTE = i*2.66; //Sonia2
+                    this.TTE = i/6; //Sonia2
                 }
             },
             'compareCells': function() {
