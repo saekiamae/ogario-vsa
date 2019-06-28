@@ -2587,7 +2587,7 @@ var thelegendmodproject = function(t, e, i) {
 						t += h.score + ': ' + i.playerScore
 						}						
 						if (v.showStatsSTE && i.STE){
-							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE //Sonia2
+							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE + ' | ◉➚◎: ' + i.PTE//Sonia2
 						} 
 						if (v.showStatsN16 && i.playerSplitCells){
 							t += ' | ' + i.playerSplitCells + '/16'
@@ -6491,6 +6491,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.BMTE = Math.ceil(i*1.33); //Sonia2
                     this.BSTE = Math.ceil(i*2.66); //Sonia2
                     this.TTE = Math.ceil(i/6); //Sonia2
+                    this.PTE = Math.floor(i*0.66); //Sonia2
                 }
             },
             'compareCells': function() {
