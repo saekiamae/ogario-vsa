@@ -7123,10 +7123,6 @@ var thelegendmodproject = function(t, e, i) {
                     t.lineWidth = s, t.globalAlpha = o, t.strokeStyle = a;
                     //for (var n = 0; n < e.length; n++) t.beginPath(), t.arc(e[n].x, e[n].y, 1.5*e[n].size + 2*i, 0, this.pi2, false), t.closePath(), t.stroke();
 					for (var n = 0; n < e.length; n++) t.beginPath(), t.arc(e[n].x, e[n].y, 2 * e[n].size + i, 0, this.pi2, false), t.closePath(), t.stroke(); //760+2*cell.size is the correct
-                    var times=40; //Sonia2
-                    for (i = 0; i < times; i=i+2) { //Sonia2
-                        for (var n = 0; n < e.length; n++) t.beginPath(), t.arc(e[n].x, e[n].y, 1.5 * e[n].size + 2*i, 0+i*this.pi2/times, (1+i)*this.pi2/times, false), t.closePath(), t.stroke(); //Sonia2 Slowsplit double range
-                    } //Sonia2
                     t.globalAlpha = 1;
                 },				
                 'drawDashedCircle': function(t, e, i, s, o, a, n) {
