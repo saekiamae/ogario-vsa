@@ -444,6 +444,8 @@ var thelegendmodproject = function(t, e, i) {
                     'teammatesIndColor': 'Wskaźnik gracza',
                     'cursorTrackingColor': 'Śledzenie kursora',
                     'splitRangeColor': 'Zasięg podziału',
+                    'qdsplitRange': 'Zasięg szybkiego podwójnego podziału', //Sonia2
+                    'sdsplitRange': 'Zasięg powolnego podwójnego podziału', //Sonia2
                     'enemyBSTEDColor': 'Kolor W2STE wroga', //Sonia2
                     'enemyBSTEColor': 'Kolor WSTE wroga', //Sonia2
                     'enemyBColor': 'Kolor większego wroga', //Sonia2
@@ -661,6 +663,8 @@ var thelegendmodproject = function(t, e, i) {
                     'oppRings': 'Opponents rings',
                     'virColors': 'Viruses colors',
                     'splitRange': 'Split range',
+                    'qdsplitRange': 'Quick double split range', //Sonia2
+                    'sdsplitRange': 'Slow double split range', //Sonia2
                     'virusesRange': 'Viruses range',
                     'textStroke': 'Names and mass stroke',
                     'namesStroke': 'Names stroke',
@@ -2164,6 +2168,8 @@ var thelegendmodproject = function(t, e, i) {
                 'oppRings': true,
                 'virColors': false,
                 'splitRange': false,
+                'qdsplitRange': true, //Sonia2
+                'sdsplitRange': true, //Sonia2
                 'virusesRange': false,
                 'textStroke': false,
                 'namesStroke': true,
@@ -7073,7 +7079,7 @@ var thelegendmodproject = function(t, e, i) {
 
                         var a = s ? i.length - 1 : 0;
                         //console.log(i[a].size);
-                        if (i[a].size >= 400) {
+                        if (i[a].size >= 400 && v.qdsplitRange) { //Sonia2
                             t.lineWidth = 6,
                                 t.globalAlpha = g.darkTheme ? 0.7 : 0.35,
                                 t.strokeStyle = g.splitRangeColor;
@@ -7122,10 +7128,14 @@ var thelegendmodproject = function(t, e, i) {
                 'draw2Circles': function(t, e, i, s, o, a) {
                     t.lineWidth = s, t.globalAlpha = o, t.strokeStyle = a;
                     //for (var n = 0; n < e.length; n++) t.beginPath(), t.arc(e[n].x, e[n].y, 1.5*e[n].size + 2*i, 0, this.pi2, false), t.closePath(), t.stroke();
-					for (var n = 0; n < e.length; n++) t.beginPath(), t.arc(e[n].x, e[n].y, 2 * e[n].size + i, 0, this.pi2, false), t.closePath(), t.stroke(); //760+2*cell.size is the correct
-                    for (var n = 0; n < e.length; n++) t.setLineDash([20,30]),t.lineWidth = 2*s,t.beginPath(), t.arc(e[n].x, e[n].y, 1.5 * e[n].size + 2*i, 0, this.pi2, false), t.closePath(), t.stroke();
-                    t.setLineDash([]);
-                    t.lineWidth = s;
+                    if(v.qdsplitRange){ //Sonia2
+                        for (var n = 0; n < e.length; n++) t.beginPath(), t.arc(e[n].x, e[n].y, 2 * e[n].size + i, 0, this.pi2, false), t.closePath(), t.stroke(); //760+2*cell.size is the correct
+                    }//Sonia2
+                    if(v.sdsplitRange){ //Sonia2
+                        for (var n = 0; n < e.length; n++) t.setLineDash([20,30]),t.lineWidth = 2*s,t.beginPath(), t.arc(e[n].x, e[n].y, 1.5 * e[n].size + 2*i, 0, this.pi2, false), t.closePath(), t.stroke(); //Sonia2
+                        t.setLineDash([]); //Sonia2
+                        t.lineWidth = s; //Sonia2
+                    }//Sonia2
                     t.globalAlpha = 1;
                 },				
                 'drawDashedCircle': function(t, e, i, s, o, a, n) {
