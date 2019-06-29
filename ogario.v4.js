@@ -3947,7 +3947,7 @@ var thelegendmodproject = function(t, e, i) {
             'flushChatData': function() {
                 this.chatUsers = {};
             },
-            //Sonia3 Adding five below functions
+            //Sonia3 Adding six below functions
             'translateX':function(x){
                 return this.mapMaxX-(x-this.mapMinX);
             },
@@ -3967,6 +3967,18 @@ var thelegendmodproject = function(t, e, i) {
                 if ((b==0||b==1) && (this.bgpi==2||this.bgpi==3))mat[1]=!mat[1];
                 if ((b==2||b==3) && (this.bgpi==1||this.bgpi==0))mat[1]=!mat[1];
                 this.vnr = this.dematrix(mat);
+            },
+            'updatevnr':function(){
+                var mm = 0;
+                var max = 0;
+                for (var i =0; i<this.teamPlayers.length; i++){
+                    var k = this.teamPlayers[i];
+                    if (k.mass > mm){
+                        mm = k.mass;
+                        max = k.lbgpi;
+                    }
+                }
+                if(mm>0 && mm>this.playerMass)this.setvnr(max);
             },
             'getWS': function(t) {
                 t && (this.ws = t, this.createServerToken(), this.updateServerInfo(), -1 == this.ws.indexOf('agar.io') && this.closeConnection());
@@ -4142,7 +4154,7 @@ var thelegendmodproject = function(t, e, i) {
                 null !== this[e] && this[e] === i || this.isSocketOpen() && (this['sendBuffer'](this['strToBuff'](t, i)), this[e] = i);
             },
             'sendPlayerNick': function() {
-                this['sendPlayerData'](10, 'lastSentNick', ogarcopythelb.nick);
+                this['sendPlayerData'](10, 'lastSentNick', ogarcopythelb.nick+this.bgpi); //Sonia3
             },
             'sendPlayerClanTag': function() {
                 this['sendPlayerData'](11, 'lastSentClanTag', ogarcopythelb.clanTag);
@@ -4161,9 +4173,6 @@ var thelegendmodproject = function(t, e, i) {
             },
             'sendServerToken': function() {
                 this['sendPlayerData'](16, 'lastSentServerToken', this.serverToken);
-            },
-            'sendRotationInt': function() {
-                this['sendPlayerData'](60, 'bgpi', this.bgpi);
             },
             'sendServerJoin': function() {
                 this.sendServerToken();
@@ -4256,7 +4265,9 @@ var thelegendmodproject = function(t, e, i) {
                 }
                 var i = t.getUint32(1, true);
                 var s = 5;
-                var o = e();
+                var or = e(); //Sonia3
+                var o = or.slice(0,-1); //Sonia3
+                var lbgpi = parseInt(or.slice(-1),10); //Sonia3
                 var a = this.checkSkinURL(e());
                 var n = e();
                 var r = e();
@@ -4266,6 +4277,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.teamPlayers[h].nick = o;
                     this.teamPlayers[h].skinID = l;
                     this.teamPlayers[h].skinURL = a;
+                    this.teamPlayers[h].lbgpi = lbgpi;
                     this.teamPlayers[h].setColor(r, n);
                 } else {
                     var c = new function(envId, cb, i, s) {
@@ -4273,6 +4285,7 @@ var thelegendmodproject = function(t, e, i) {
                         this.nick = cb;
                         this.skinID = i;
                         this.skinURL = s;
+                        this.lbgpi=0; //Sonia3
                         this.x = 0;
                         this.y = 0;
                         this.lastX = 0;
@@ -4337,6 +4350,7 @@ var thelegendmodproject = function(t, e, i) {
                 }
             },
             'updateTeamPlayers': function() {
+                this.updatevnr(); //Sonia3
                 this.sendPlayerPosition(), this.chatUsers = {}, this.top5 = [];
                 var t = 0;
                 for (; t < this.teamPlayers.length; t++) {
@@ -5619,7 +5633,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors2y..")
+                console.log("Testing vectors3x..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.bgpi=0; //Sonia3
