@@ -3947,39 +3947,6 @@ var thelegendmodproject = function(t, e, i) {
             'flushChatData': function() {
                 this.chatUsers = {};
             },
-            //Sonia3 Adding six below functions
-            'translateX':function(x){
-                return this.mapMaxX-(x-this.mapMinX);
-            },
-            'translateY':function(x){
-                return this.mapMaxY-(x-this.mapMinY);
-            },
-            'calculatebgpi':function(x,y){
-                return x>=this.mapMidX && y<this.mapMidY ? 0 : x<this.mapMidX && y<this.mapMidY ? 1 : x <this.mapMidX && y>=this.mapMidY ? 2 : 3;
-            },
-            'dematrix':function(mat){
-                return !mat[0] && !mat[1] ? 0 : mat[0] && !mat[1] ? 1 : mat[0] && mat[1] ? 2 : 3;
-            },
-            'setvnr':function(b){
-                var mat = this.vector[this.vnr];
-                if ((b==0||b==3) && (this.bgpi==1||this.bgpi==2))mat[0]=!mat[0];
-                if ((b==1||b==2) && (this.bgpi==0||this.bgpi==3))mat[0]=!mat[0];
-                if ((b==0||b==1) && (this.bgpi==2||this.bgpi==3))mat[1]=!mat[1];
-                if ((b==2||b==3) && (this.bgpi==1||this.bgpi==0))mat[1]=!mat[1];
-                this.vnr = this.dematrix(mat);
-            },
-            'updatevnr':function(){
-                var mm = 0;
-                var max = 0;
-                for (var i =0; i<this.teamPlayers.length; i++){
-                    var k = this.teamPlayers[i];
-                    if (k.mass > mm){
-                        mm = k.mass;
-                        max = k.lbgpi;
-                    }
-                }
-                if(mm>0 && mm>this.playerMass)this.setvnr(max);
-            },
             'getWS': function(t) {
                 t && (this.ws = t, this.createServerToken(), this.updateServerInfo(), -1 == this.ws.indexOf('agar.io') && this.closeConnection());
             },
@@ -5633,7 +5600,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors6z..")
+                console.log("Testing vectors7z..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.bgpi=0; //Sonia3
@@ -6427,6 +6394,39 @@ var thelegendmodproject = function(t, e, i) {
                         }
                     }
                 }
+            },
+            //Sonia3 Adding six below functions
+            'translateX':function(x){
+                return this.mapMaxX-(x-this.mapMinX);
+            },
+            'translateY':function(x){
+                return this.mapMaxY-(x-this.mapMinY);
+            },
+            'calculatebgpi':function(x,y){
+                return x>=this.mapMidX && y<this.mapMidY ? 0 : x<this.mapMidX && y<this.mapMidY ? 1 : x <this.mapMidX && y>=this.mapMidY ? 2 : 3;
+            },
+            'dematrix':function(mat){
+                return !mat[0] && !mat[1] ? 0 : mat[0] && !mat[1] ? 1 : mat[0] && mat[1] ? 2 : 3;
+            },
+            'setvnr':function(b){
+                var mat = this.vector[this.vnr];
+                if ((b==0||b==3) && (this.bgpi==1||this.bgpi==2))mat[0]=!mat[0];
+                if ((b==1||b==2) && (this.bgpi==0||this.bgpi==3))mat[0]=!mat[0];
+                if ((b==0||b==1) && (this.bgpi==2||this.bgpi==3))mat[1]=!mat[1];
+                if ((b==2||b==3) && (this.bgpi==1||this.bgpi==0))mat[1]=!mat[1];
+                this.vnr = this.dematrix(mat);
+            },
+            'updatevnr':function(){
+                var mm = 0;
+                var max = 0;
+                for (var i =0; i<this.teamPlayers.length; i++){
+                    var k = this.teamPlayers[i];
+                    if (k.mass > mm){
+                        mm = k.mass;
+                        max = k.lbgpi;
+                    }
+                }
+                if(mm>0 && mm>this.playerMass)this.setvnr(max);
             },
             'updateCells': function(t, i) {
                 var s = function() {
