@@ -6090,8 +6090,8 @@ var thelegendmodproject = function(t, e, i) {
                             s += 5;
                             var g = ~~Math.sqrt(100 * m);
                             this.ghostCells.push({
-                                'x': this.vector[this.vnr][0] ? this.translateX(d) : d, //Sonia3
-                                'y': this.vector[this.vnr][1] ? this.translateY(f) : f, //Sonia3
+                                'x': this.vector[this.vnr][0] ? this.translateX(d) : d,
+                                'y': this.vector[this.vnr][1] ? this.translateY(f) : f,
                                 'size': g,
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
