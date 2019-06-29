@@ -3995,6 +3995,8 @@ var thelegendmodproject = function(t, e, i) {
                     this.socket['ogarioWS'] = true,
                     this.socket['binaryType'] = 'arraybuffer';
                 var t = this;
+                t.vector=[[1,1][-1,1],[-1,-1],[1,-1]]; //Sonia3
+                t.vnr=0; //Sonia3
                 this.socket['onopen'] = function() {
                     console.log('[Legend mod Express] Socket open');
                     var e = t.createView(3);
@@ -6052,7 +6054,6 @@ var thelegendmodproject = function(t, e, i) {
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
                             });
-                            console.log("Ghost coord:",this.ghostCells[0].x," ",this.ghostCells[0].y)
                         }
                         break;
                     case 85:
@@ -6394,8 +6395,8 @@ var thelegendmodproject = function(t, e, i) {
                     var n = this.indexedCells[t.readUInt32LE(i)],
                         r = this.indexedCells[t.readUInt32LE(i + 4)];
                     if (i += 8, n && r) {
-                        r.targetX = n.x;
-                        r.targetY = n.y;
+                        r.targetX = n.x*this.vector[this.vnr][1]; //Sonia3
+                        r.targetY = n.y*this.vector[this.vnr][1]; //Sonia3
                         r.targetSize = r.size;
                         r.time = this.time;
                         r.removeCell();
