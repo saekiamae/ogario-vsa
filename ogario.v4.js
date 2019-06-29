@@ -1,7 +1,7 @@
 // Open Source script
-// Decoded simplified and modified by MGx, Adam, Jimboy3100, Snez, Volum, Alexander Lulko
+// Decoded simplified and modified by MGx, Adam, Jimboy3100, Snez, Volum, Alexander Lulko, Sonia
 // This is part of the Legend mod project
-// v1.913 MEGA TEST
+// v1.922 MEGA TEST
 // Game Configurations
 
 //window.testobjects = {};
@@ -116,6 +116,12 @@ function checkVideos3(o) {
 
 window.agarversion = "v12/2168/";
 //window.agarversion="v12/1922/";
+
+window.getLatestID = window.localStorage.getItem('getLatestID');
+window.getLatestconfigVersion = window.localStorage.getItem('EnvConfig.configVersion');
+//if ( window.getLatestID != null && window.getLatestconfigVersion != null ){
+//	window.agarversion = window.getLatestconfigVersion + "/" + window.getLatestID + "/";
+//}
 
 function pauseVideos() {
     setTimeout(function() {
@@ -310,7 +316,7 @@ var thelegendmodproject = function(t, e, i) {
                     'fpsAtTop': 'Statystyki na górze',
                     'showStats': 'Pokaż statystyki',
                     'showStatsMass': 'Statystyki: Masa',
-                    'showStatsSTE': 'Statystyki: STE',
+                    'showStatsSTE': 'Statystyki: Przedziały Masy',
                     'showStatsN16': 'Statystyki: n/16',
                     'showStatsFPS': 'Statystyki: FPS',
                     'blockPopups': 'Blokuj popupy (reklamy/sklep/zadanie)',
@@ -695,7 +701,7 @@ var thelegendmodproject = function(t, e, i) {
                     'fpsAtTop': 'Game stats at the top',
                     'showStats': 'Show game stats',
                     'showStatsMass': 'Game stats: Mass',
-                    'showStatsSTE': 'Game stats: STE',
+                    'showStatsSTE': 'Game stats: Mass Ranges',
                     'showStatsN16': 'Game stats: n/16',
                     'showStatsFPS': 'Game stats: FPS',
                     'blockPopups': 'Block popups (ads/shop/quest)',
@@ -1144,7 +1150,7 @@ var thelegendmodproject = function(t, e, i) {
                     'enemyBColor': '#FF0A00', //Sonia2
                     'enemySColor': '#00C8FF', //Sonia2
                     'enemySSTEColor': '#64FF00', //Sonia2
-                    'enemySSTEDColor': '#0080ff', //Sonia2
+                    'enemySSTEDColor': '#048245', //Sonia2
                     'safeAreaColor': '#ffffff',
                     'dangerAreaColor': '#bf00aa',
                     'namesFont': 'ubuntu-bold',
@@ -1315,7 +1321,7 @@ var thelegendmodproject = function(t, e, i) {
                     'enemyBColor': '#FF0A00', //Sonia2
                     'enemySColor': '#00C8FF', //Sonia2
                     'enemySSTEColor': '#64FF00', //Sonia2
-                    'enemySSTEDColor': '#0080ff', //Sonia2
+                    'enemySSTEDColor': '#048245', //Sonia2
                     'safeAreaColor': '#ffffff',
                     'dangerAreaColor': '#bf00aa',
                     'massScale': 4,
@@ -1570,7 +1576,7 @@ var thelegendmodproject = function(t, e, i) {
                 'enemyBColor': '#FF0A00', //Sonia2
                 'enemySColor': '#00C8FF', //Sonia2
                 'enemySSTEColor': '#64FF00', //Sonia2
-                'enemySSTEDColor': '#0080ff', //Sonia2
+                'enemySSTEDColor': '#048245', //Sonia2
                 'ghostCellsColor': '#ffffff',
                 'safeAreaColor': '#ffffff',
                 'dangerAreaColor': '#bf00aa',
@@ -2585,20 +2591,20 @@ var thelegendmodproject = function(t, e, i) {
 						} 
 						if (i.playerScore){
 						t += h.score + ': ' + i.playerScore
-						}						
-						if (v.showStatsSTE && i.STE){
-							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE + ' | ➚◎➘: ' + i.PTE//Sonia2
-						} 
+						}						 
 						if (v.showStatsN16 && i.playerSplitCells){
 							t += ' | ' + i.playerSplitCells + '/16'
-						}							
+						}		
+						if (v.showStatsSTE && i.STE){
+							t += ' | ◎◎➛◉: ' + i.BSTE + ' | ◎➛◉: ' + i.BMTE + ' | ◉➛◎: ' + i.MTE + ' | ◉◉➛◎: ' + i.STE + ' | ◉➚◉: ' + i.TTE + ' | ➚◎➘: ' + i.PTE//Sonia2
+						}						
 						if (v.showStatsFPS) {
 							t += ' | '
-						}
+						}							
 					}						
 					if (v.showStatsFPS){
 						t += 'FPS: ' + ogarfooddrawer.fps; 
-					}
+					}					
 					this.statsHUD.textContent = t;
                     var e = this;
                     setTimeout(function() {
@@ -6576,8 +6582,9 @@ var thelegendmodproject = function(t, e, i) {
             },			
             'setCellOppColor': function(t, e, i) {
                 //return t ? ogarcopythelb.color : e > 11 ? '#FF008C' : e >= 2.5 ? '#BE00FF' : e >= 1.25 ? '#FF0A00' : e < 1.25 && e > 0.75 ? '#FFDC00' : e > i ? '#00C8FF' : '#64FF00';
-				return t ? ogarcopythelb.color : e > 11 ? '#8000ff' : e >= 5.32 ? '#BE00FF' : e >= 2.66 && e <= 5.32 ? '#BE00FF' : e >= 1.33 && e <= 2.66 ? '#FF0A00' : e < 1.33 && e > 0.75 ? '#FFDC00' : e < 0.75 && e > 0.375 ? '#0080ff' : e > i ? '#00C8FF' : '#64FF00'; //Sonia
-            },
+				//return t ? ogarcopythelb.color : e > 10.64 ? g.enemyBSTEDColor : e >= 5.32 ? g.enemyBSTEDColor : e >= 2.66 && e <= 5.32 ? g.enemyBSTEColor : e >= 1.33 && e <= 2.66 ? g.enemyBColor : e < 1.33 && e > 0.75 ? '#FFDC00' : e < 0.75 && e > 0.375 ? g.enemySSTEDColor : e > i ? '#00C8FF' : g.enemySSTEColor; //Sonia
+				 return t ? ogarcopythelb.color : e >= 10.64 ? g.enemyBSTEDColor : e >= 5.32 ? g.enemyBSTEDColor : e >= 2.66 ? g.enemyBSTEColor : e >= 1.33 ? g.enemyBColor : e > 0.75 ? '#FFDC00' : e > 0.375 ? g.enemySColor : e > 0.1875 ? g.enemySSTEColor : g.enemySSTEDColor; 
+		   },
             'getCursorPosition': function() {
                 this.cursorX = (this.clientX - this.canvasWidth / 2) / this.viewScale + this.viewX;
                 this.cursorY = (this.clientY - this.canvasHeight / 2) / this.viewScale + this.viewY;
