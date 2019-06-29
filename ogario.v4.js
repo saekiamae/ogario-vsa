@@ -6396,7 +6396,7 @@ var thelegendmodproject = function(t, e, i) {
                     var n = this.indexedCells[t.readUInt32LE(i)],
                         r = this.indexedCells[t.readUInt32LE(i + 4)];
                     if (i += 8, n && r) {
-                        console.log(this.vector[this.vnr]);
+                        console.log("Vectorx: ",this.vector[this.vnr]);
                         r.targetX = n.x * this.vector[this.vnr][1]; //Sonia3
                         r.targetY = n.y * this.vector[this.vnr][1]; //Sonia3
                         r.targetSize = r.size;
