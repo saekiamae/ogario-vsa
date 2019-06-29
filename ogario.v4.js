@@ -3995,8 +3995,9 @@ var thelegendmodproject = function(t, e, i) {
                     this.socket['ogarioWS'] = true,
                     this.socket['binaryType'] = 'arraybuffer';
                 var t = this;
-                t.vector=[[1,1][-1,1],[-1,-1],[1,-1]]; //Sonia3
-                t.vnr=0; //Sonia3
+                console.log("Testing vectors..")
+                this.vector=[[1,1][-1,1],[-1,-1],[1,-1]]; //Sonia3
+                this.vnr=0; //Sonia3
                 this.socket['onopen'] = function() {
                     console.log('[Legend mod Express] Socket open');
                     var e = t.createView(3);
