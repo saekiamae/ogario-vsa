@@ -5595,7 +5595,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors5..")
+                console.log("Testing vectors7..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.closeConnection();
@@ -5727,8 +5727,8 @@ var thelegendmodproject = function(t, e, i) {
             'sendPosition': function(cell, target2) {
                 if (this.isSocketOpen() && this.connectionOpened && this.clientKey) {
                     if (!window.autoPlay) {
-                        var t = this.cursorX;
-                        var e = this.cursorY;
+                        var t = this.vector[this.vnr][0] ? this.translateX(this.cursorX) : this.cursorX; //Sonia3
+                        var e = this.vector[this.vnr][1] ? this.translateY(this.cursorY) : this.cursorY; //Sonia3
                         if (!this.play && this.targeting || this.pause) {
                             t = this.targetX;
                             e = this.targetY;
@@ -6601,8 +6601,6 @@ var thelegendmodproject = function(t, e, i) {
             'getCursorPosition': function() {
                 this.cursorX = (this.clientX - this.canvasWidth / 2) / this.viewScale + this.viewX;
                 this.cursorY = (this.clientY - this.canvasHeight / 2) / this.viewScale + this.viewY;
-                //if(this.vector[this.vnr][0])this.cursorX=this.translateX(this.cursorX); //Sonia3
-                //if(this.vector[this.vnr][1])this.cursorY=this.translateY(this.cursorY); //Sonia3
             },
             'setZoom': function(t) {
                 //t.preventDefault(), this.zoomValue *= Math.pow(v.zoomSpeedValue2, t.wheelDelta / -120 || t.detail || 0), this.zoomValue > 4 / this.viewScale && (this.zoomValue = 4 / this.viewScale);
