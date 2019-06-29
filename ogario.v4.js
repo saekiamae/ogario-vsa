@@ -5595,7 +5595,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors3..")
+                console.log("Testing vectors4..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.closeConnection();
@@ -6380,6 +6380,13 @@ var thelegendmodproject = function(t, e, i) {
                     }
                 }
             },
+            //Sonia3 Adding two below functions
+            'translateX':function(x){
+                return this.mapMaxX-(x-this.mapMinX);
+            },
+            'translateY':function(x){
+                return this.mapMaxY-(x-this.mapMinY);
+            },
             'updateCells': function(t, i) {
                 var s = function() {
                     for (var e = '';;) {
@@ -6407,10 +6414,10 @@ var thelegendmodproject = function(t, e, i) {
                     var l = t.readUInt32LE(i);
                     if (i += 4, 0 == l) break;
                     var h = t.readInt32LE(i);
-                    if(this.vector[this.vnr][0])h=this.mapMaxX-(h-this.mapMinX); //Sonia3
+                    if(this.vector[this.vnr][0])h=this.translateX(h); //Sonia3
                     i += 4;
                     var c = t.readInt32LE(i);
-                    if(this.vector[this.vnr][1])c=this.mapMaxY-(c-this.mapMinY); //Sonia3
+                    if(this.vector[this.vnr][1])c=this.translateY(c); //Sonia3
                     i += 4;
                     var u = t.readUInt16LE(i);
                     i += 2;
@@ -6594,6 +6601,8 @@ var thelegendmodproject = function(t, e, i) {
             'getCursorPosition': function() {
                 this.cursorX = (this.clientX - this.canvasWidth / 2) / this.viewScale + this.viewX;
                 this.cursorY = (this.clientY - this.canvasHeight / 2) / this.viewScale + this.viewY;
+                if(this.vector[this.vnr][0])this.cursorX=this.translateX(this.cursroX); //Sonia3
+                if(this.vector[this.vnr][1])this.cursorY=this.translateY(this.cursroY); //Sonia3
             },
             'setZoom': function(t) {
                 //t.preventDefault(), this.zoomValue *= Math.pow(v.zoomSpeedValue2, t.wheelDelta / -120 || t.detail || 0), this.zoomValue > 4 / this.viewScale && (this.zoomValue = 4 / this.viewScale);
