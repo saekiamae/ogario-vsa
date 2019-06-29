@@ -3995,7 +3995,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.socket['ogarioWS'] = true,
                     this.socket['binaryType'] = 'arraybuffer';
                 var t = this;
-                console.log("Testing vectors..")
+                console.log("Testing vectors2..")
                 this.vector=[[1,1][-1,1],[-1,-1],[1,-1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.socket['onopen'] = function() {
@@ -6396,8 +6396,9 @@ var thelegendmodproject = function(t, e, i) {
                     var n = this.indexedCells[t.readUInt32LE(i)],
                         r = this.indexedCells[t.readUInt32LE(i + 4)];
                     if (i += 8, n && r) {
-                        r.targetX = n.x*this.vector[this.vnr][1]; //Sonia3
-                        r.targetY = n.y*this.vector[this.vnr][1]; //Sonia3
+                        console.log(this.vector[this.vnr]);
+                        r.targetX = n.x * this.vector[this.vnr][1]; //Sonia3
+                        r.targetY = n.y * this.vector[this.vnr][1]; //Sonia3
                         r.targetSize = r.size;
                         r.time = this.time;
                         r.removeCell();
