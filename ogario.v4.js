@@ -4321,6 +4321,8 @@ var thelegendmodproject = function(t, e, i) {
                 return !mat[0] && !mat[1] ? 0 : mat[0] && !mat[1] ? 1 : mat[0] && mat[1] ? 2 : 3;
             },
             'setvnr':function(b){
+                if (typeof this.vector == 'undefined')this.vector = [[0,0],[1,0],[1,1],[0,1]];
+                if (typeof this.vnr == 'undefined')this.vnr=0;
                 var mat = this.vector[this.vnr];
                 if ((b==0||b==3) && (this.bgpi==1||this.bgpi==2))mat[0]=!mat[0];
                 if ((b==1||b==2) && (this.bgpi==0||this.bgpi==3))mat[0]=!mat[0];
@@ -5627,7 +5629,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors9z..")
+                console.log("Testing vector0s..")
                 this.vnr=0; //Sonia3
                 this.bgpi=0; //Sonia3
                 this.closeConnection();
