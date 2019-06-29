@@ -3947,6 +3947,27 @@ var thelegendmodproject = function(t, e, i) {
             'flushChatData': function() {
                 this.chatUsers = {};
             },
+            //Sonia3 Adding five below functions
+            'translateX':function(x){
+                return this.mapMaxX-(x-this.mapMinX);
+            },
+            'translateY':function(x){
+                return this.mapMaxY-(x-this.mapMinY);
+            },
+            'calculatebgpi':function(x,y){
+                return x>=this.mapMidX && y<this.mapMidY ? 0 : x<this.mapMidX && y<this.mapMidY ? 1 : x <this.mapMidX && y>=this.mapMidY ? 2 : 3;
+            },
+            'dematrix':function(mat){
+                return !mat[0] && !mat[1] ? 0 : mat[0] && !mat[1] ? 1 : mat[0] && mat[1] ? 2 : 3;
+            },
+            'setvnr':function(b){
+                var mat = this.vector[this.vnr];
+                if ((b==0||b==3) && (this.bgpi==1||this.bgpi==2))mat[0]=!mat[0];
+                if ((b==1||b==2) && (this.bgpi==0||this.bgpi==3))mat[0]=!mat[0];
+                if ((b==0||b==1) && (this.bgpi==2||this.bgpi==3))mat[1]=!mat[1];
+                if ((b==2||b==3) && (this.bgpi==1||this.bgpi==0))mat[1]=!mat[1];
+                this.vnr = this.dematrix(mat);
+            },
             'getWS': function(t) {
                 t && (this.ws = t, this.createServerToken(), this.updateServerInfo(), -1 == this.ws.indexOf('agar.io') && this.closeConnection());
             },
@@ -4140,6 +4161,9 @@ var thelegendmodproject = function(t, e, i) {
             },
             'sendServerToken': function() {
                 this['sendPlayerData'](16, 'lastSentServerToken', this.serverToken);
+            },
+            'sendRotationInt': function() {
+                this['sendPlayerData'](60, 'bgpi', this.bgpi);
             },
             'sendServerJoin': function() {
                 this.sendServerToken();
@@ -5595,9 +5619,10 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors9..")
+                console.log("Testing vectors2y..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
+                this.bgpi=0; //Sonia3
                 this.closeConnection();
                 this.flushCellsData();
                 this.protocolKey = null;
@@ -6040,6 +6065,8 @@ var thelegendmodproject = function(t, e, i) {
                         window.testobjectsOpcode65 = data;
                         var u = data.getUint16(s, true);
                         s += 2, this.ghostCells = [];
+                        var max = 0; //Sonia3
+                        var mmax = 0; //Sonia3
                         for (n = 0; n < u; n++) {
                             var d = data.getInt32(s, true);
                             s += 4;
@@ -6055,7 +6082,12 @@ var thelegendmodproject = function(t, e, i) {
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
                             });
+                            if (m>mmax){ //Sonia3
+                                mmax=m; //Sonia3
+                                max=n; //Sonia3
+                            } //Sonia3
                         }
+                        this.bgpi=this.calculatebgpi(this.ghostCells[max].x,this.ghostCells[max].y); //Sonia3
                         break;
                     case 85:
                         window.testobjectsOpcode85 = data;
@@ -6343,6 +6375,8 @@ var thelegendmodproject = function(t, e, i) {
                     this.mapMinY = ~~(-this.mapOffset - this.mapOffsetY);
                     this.mapMaxX = ~~(this.mapOffset - this.mapOffsetX);
                     this.mapMaxY = ~~(this.mapOffset - this.mapOffsetY);
+                    this.mapMidX = (this.mapMaxX+this.mapMinX)/2; //Sonia3
+                    this.mapMidY = (this.mapMaxY+this.mapMinY)/2; //Sonia3
                     this.mapOffsetFixed || (this.viewX = (i + t) / 2, this.viewY = (s + e) / 2);
                     this.mapOffsetFixed = true;
 					console.log('[Legend mod Express] Map offset fixed: (', this.mapOffsetX ,',', this.mapOffsetY,')');
@@ -6379,13 +6413,6 @@ var thelegendmodproject = function(t, e, i) {
                         }
                     }
                 }
-            },
-            //Sonia3 Adding two below functions
-            'translateX':function(x){
-                return this.mapMaxX-(x-this.mapMinX);
-            },
-            'translateY':function(x){
-                return this.mapMaxY-(x-this.mapMinY);
             },
             'updateCells': function(t, i) {
                 var s = function() {
