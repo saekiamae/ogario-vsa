@@ -6601,8 +6601,8 @@ var thelegendmodproject = function(t, e, i) {
             'getCursorPosition': function() {
                 this.cursorX = (this.clientX - this.canvasWidth / 2) / this.viewScale + this.viewX;
                 this.cursorY = (this.clientY - this.canvasHeight / 2) / this.viewScale + this.viewY;
-                if(this.vector[this.vnr][0])this.cursorX=this.translateX(this.cursroX); //Sonia3
-                if(this.vector[this.vnr][1])this.cursorY=this.translateY(this.cursroY); //Sonia3
+                if(this.vector[this.vnr][0])this.cursorX=this.translateX(this.cursorX); //Sonia3
+                if(this.vector[this.vnr][1])this.cursorY=this.translateY(this.cursorY); //Sonia3
             },
             'setZoom': function(t) {
                 //t.preventDefault(), this.zoomValue *= Math.pow(v.zoomSpeedValue2, t.wheelDelta / -120 || t.detail || 0), this.zoomValue > 4 / this.viewScale && (this.zoomValue = 4 / this.viewScale);
