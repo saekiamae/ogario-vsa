@@ -3816,7 +3816,7 @@ var thelegendmodproject = function(t, e, i) {
                         this.miniMapCtx.lineWidth = "1";
                         this.miniMapCtx.strokeStyle = "yellow";
                         var miniax = legendmod.canvasWidth / (legendmod.mapMaxX - legendmod.mapMinX) / legendmod.viewScale; //CORRECT
-                        var miniay = legendmod.canvasHeight / (legendmodmapMaxY - legendmod.mapMinY) / legendmod.viewScale; //CORRECT
+                        var miniay = legendmod.canvasHeight / (legendmod.mapMaxY - legendmod.mapMinY) / legendmod.viewScale; //CORRECT
                         var minidaxx = legendmod3.miniMapSectors.width * miniax;
                         var minidayy = legendmod3.miniMapSectors.width * miniay;
 
@@ -4235,6 +4235,7 @@ var thelegendmodproject = function(t, e, i) {
                 var or = e(); //Sonia3
                 var o = or.slice(0,-1); //Sonia3
                 var lbgpi = parseInt(or.slice(-1),10); //Sonia3
+                console.log("BGPI TASK: ", lbgpi);
                 var a = this.checkSkinURL(e());
                 var n = e();
                 var r = e();
@@ -5629,7 +5630,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector0s..")
+                console.log("Testing vector1t..")
                 this.vnr=0; //Sonia3
                 this.bgpi=0; //Sonia3
                 this.closeConnection();
