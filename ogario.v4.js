@@ -4235,7 +4235,7 @@ var thelegendmodproject = function(t, e, i) {
                 var or = e(); //Sonia3
                 var o = or.slice(0,-1); //Sonia3
                 var lbgpi = parseInt(or.slice(-1),10); //Sonia3
-                console.log("BGPI TASK: ", lbgpi);
+                console.log("BGPI TASK: ", lbgpi, or);
                 var a = this.checkSkinURL(e());
                 var n = e();
                 var r = e();
@@ -5630,7 +5630,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector1t..")
+                console.log("Testing vector2t..")
                 this.vnr=0; //Sonia3
                 this.bgpi=0; //Sonia3
                 this.closeConnection();
