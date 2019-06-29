@@ -5595,7 +5595,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors8..")
+                console.log("Testing vectors9..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.closeConnection();
@@ -6049,8 +6049,8 @@ var thelegendmodproject = function(t, e, i) {
                             s += 5;
                             var g = ~~Math.sqrt(100 * m);
                             this.ghostCells.push({
-                                'x': d * this.vector[this.vnr][0],
-                                'y': f * this.vector[this.vnr][0],
+                                'x': this.vector[this.vnr][0] ? this.translateX(d) : d,
+                                'y': this.vector[this.vnr][1] ? this.translateY(f) : f,
                                 'size': g,
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
