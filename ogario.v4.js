@@ -6052,7 +6052,7 @@ var thelegendmodproject = function(t, e, i) {
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
                             });
-                            console.print("Ghost coord:",this.ghostCells[0].x," ",this.ghostCells[0].y)
+                            console.log("Ghost coord:",this.ghostCells[0].x," ",this.ghostCells[0].y)
                         }
                         break;
                     case 85:
