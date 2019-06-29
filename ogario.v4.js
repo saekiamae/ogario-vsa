@@ -3816,7 +3816,7 @@ var thelegendmodproject = function(t, e, i) {
                         this.miniMapCtx.lineWidth = "1";
                         this.miniMapCtx.strokeStyle = "yellow";
                         var miniax = legendmod.canvasWidth / (legendmod.mapMaxX - legendmod.mapMinX) / legendmod.viewScale; //CORRECT
-                        var miniay = legendmod.canvasHeight / (legendmod.mapMaxY - legendmod.mapMinY) / legendmod.viewScale; //CORRECT
+                        var miniay = legendmod.canvasHeight / (legendmodmapMaxY - legendmod.mapMinY) / legendmod.viewScale; //CORRECT
                         var minidaxx = legendmod3.miniMapSectors.width * miniax;
                         var minidayy = legendmod3.miniMapSectors.width * miniay;
 
@@ -5595,8 +5595,8 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors2..")
-                this.vector=[[1,1],[-1,1],[-1,-1],[1,-1]]; //Sonia3
+                console.log("Testing vectors3..")
+                this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.closeConnection();
                 this.flushCellsData();
@@ -6406,9 +6406,11 @@ var thelegendmodproject = function(t, e, i) {
                 for (a = 0;;) {
                     var l = t.readUInt32LE(i);
                     if (i += 4, 0 == l) break;
-                    var h = t.readInt32LE(i)*this.vector[this.vnr][0]; //Sonia3
+                    var h = t.readInt32LE(i);
+                    if(this.vector[this.vnr][0])h=this.mapMaxX-(h-this.mapMinX); //Sonia3
                     i += 4;
-                    var c = t.readInt32LE(i)*this.vector[this.vnr][1]; //Sonia3
+                    var c = t.readInt32LE(i);
+                    if(this.vector[this.vnr][1])c=this.mapMaxY-(c-this.mapMinY); //Sonia3
                     i += 4;
                     var u = t.readUInt16LE(i);
                     i += 2;
