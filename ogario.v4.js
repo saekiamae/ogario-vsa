@@ -5595,7 +5595,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors6..")
+                console.log("Testing vectors7..")
                 this.vector=[[1,1],[-1,1],[-1,-1],[1,-1]]; //Sonia3
                 this.vnr=2; //Sonia3
                 this.closeConnection();
@@ -6049,8 +6049,8 @@ var thelegendmodproject = function(t, e, i) {
                             s += 5;
                             var g = ~~Math.sqrt(100 * m);
                             this.ghostCells.push({
-                                'x': d*this.vector[this.vnr][0],
-                                'y': f*this.vector[this.vnr][0],
+                                'x': d, //*this.vector[this.vnr][0],
+                                'y': f, //*this.vector[this.vnr][0],
                                 'size': g,
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
@@ -6396,9 +6396,8 @@ var thelegendmodproject = function(t, e, i) {
                     var n = this.indexedCells[t.readUInt32LE(i)],
                         r = this.indexedCells[t.readUInt32LE(i + 4)];
                     if (i += 8, n && r) {
-                        //console.log("Vectorx: ",this.vector[this.vnr]);
-                        r.targetX = n.x //* 0 //this.vector[this.vnr][1]; //Sonia3
-                        r.targetY = n.y //* 0 //this.vector[this.vnr][1]; //Sonia3
+                        r.targetX = n.x;
+                        r.targetY = n.y;
                         r.targetSize = r.size;
                         r.time = this.time;
                         r.removeCell();
@@ -6407,9 +6406,9 @@ var thelegendmodproject = function(t, e, i) {
                 for (a = 0;;) {
                     var l = t.readUInt32LE(i);
                     if (i += 4, 0 == l) break;
-                    var h = t.readInt32LE(i);
+                    var h = t.readInt32LE(i)*this.vector[this.vnr][0];
                     i += 4;
-                    var c = t.readInt32LE(i);
+                    var c = t.readInt32LE(i)*this.vector[this.vnr][1];
                     i += 4;
                     var u = t.readUInt16LE(i);
                     i += 2;
