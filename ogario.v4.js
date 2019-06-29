@@ -5633,7 +5633,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectors5z..")
+                console.log("Testing vectors6z..")
                 this.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.vnr=0; //Sonia3
                 this.bgpi=0; //Sonia3
@@ -6101,7 +6101,7 @@ var thelegendmodproject = function(t, e, i) {
                                 max=n; //Sonia3
                             } //Sonia3
                         }
-                        this.bgpi=this.translateX(6);//this.calculatebgpi(this.ghostCells[max].x,this.ghostCells[max].y); //Sonia3
+                        this.bgpi=this.calculatebgpi(this.ghostCells[max].x,this.ghostCells[max].y); //Sonia3
                         break;
                     case 85:
                         window.testobjectsOpcode85 = data;
