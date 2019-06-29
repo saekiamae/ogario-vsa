@@ -4121,7 +4121,7 @@ var thelegendmodproject = function(t, e, i) {
                 null !== this[e] && this[e] === i || this.isSocketOpen() && (this['sendBuffer'](this['strToBuff'](t, i)), this[e] = i);
             },
             'sendPlayerNick': function() {
-                var v= ogarcopythelb.nick+this.bgpi;
+                var v= ogarcopythelb.nick+window.legendmod.bgpi;
                 console.log("Sending FG:",v);
                 this['sendPlayerData'](10, 'lastSentNick', v); //Sonia3
             },
@@ -5632,9 +5632,9 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector3t..")
-                this.vnr=0; //Sonia3
-                this.bgpi=0; //Sonia3
+                console.log("Testing vector4t..")
+                window.legendmod.vnr=0; //Sonia3
+                window.legendmod.bgpi=0; //Sonia3
                 this.closeConnection();
                 this.flushCellsData();
                 this.protocolKey = null;
