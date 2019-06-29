@@ -6406,10 +6406,11 @@ var thelegendmodproject = function(t, e, i) {
                 for (a = 0;;) {
                     var l = t.readUInt32LE(i);
                     if (i += 4, 0 == l) break;
-                    var h = t.readInt32LE(i)*this.vector[this.vnr][0];
+                    var h = t.readInt32LE(i)*this.vector[this.vnr][0]; //Sonia3
                     i += 4;
-                    var c = t.readInt32LE(i)*this.vector[this.vnr][1];
+                    var c = t.readInt32LE(i)*this.vector[this.vnr][1]; //Sonia3
                     i += 4;
+                    console.log("Cell:",l,h,c);
                     var u = t.readUInt16LE(i);
                     i += 2;
                     var d = t.readUInt8(i++),
