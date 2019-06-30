@@ -4341,6 +4341,7 @@ var thelegendmodproject = function(t, e, i) {
                         max = k.lbgpi;
                     }
                 }
+                console.log("VMR UPDATE:",window.legendmod.vnr,mm,this.playerMass,max,window.legendmod.bgpi);
                 if(mm>0 && mm>this.playerMass)this.setvnr(max);
             },
             'updateTeamPlayers': function() {
@@ -5630,7 +5631,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector5g..")
+                console.log("Testing vector6g..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=0; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
