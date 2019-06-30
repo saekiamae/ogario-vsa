@@ -4090,15 +4090,15 @@ var thelegendmodproject = function(t, e, i) {
                     case 1:
                         this['sendPlayerUpdate']();
                         break;
+                    case 6: //Sonia3
+                        this['getSuperLegendSDATA'](t); //Sonia3
+                        break; //Sonia3
                     case 20:
                         this['updateTeamPlayer'](t);
                         break;
                     case 30:
                         this['updateTeamPlayerPosition'](t);
                         break;
-                    case 60: //Sonia3
-                        this['getSuperLegendSDATA'](t); //Sonia3
-                        break; //Sonia3
                     case 96:
                         break;
                     case 100:
@@ -4212,7 +4212,7 @@ var thelegendmodproject = function(t, e, i) {
             'sendSuperLegendSDATA': function() {
                 if (this.isSocketOpen() && i.play && this.playerID) {
                     var t = this.createView(6);
-                    t.setUint8(0, 60);
+                    t.setUint8(0, 6);
                     t.setUint32(1, this.playerID, true);
                     t.setUint8(5, window.legendmod.bgpi);
                     console.log("SENT INT: ", window.legendmod.bgpi);
@@ -5647,7 +5647,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector2Q..")
+                console.log("Testing vector3Q..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
