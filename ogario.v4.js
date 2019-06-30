@@ -5559,9 +5559,6 @@ var thelegendmodproject = function(t, e, i) {
             'viewMinY': 0,
             'viewMaxX': 0,
             'viewMaxY': 0,
-            'vnr':0,  //Sonia3
-            'bgpi':0, //Sonia3
-            'vector':[[0,0],[1,0],[1,1],[0,1]], //Sonia3
             'canvasWidth': 0,
             'canvasHeight': 0,
             'canvasScale': 1,
@@ -5643,9 +5640,9 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector3x..")
+                console.log("Testing vector4x..")
                 window.legendmod.vnr=0; //Sonia3
-                window.legendmod.bgpi=0; //Sonia3
+                window.legendmod.bgpi=-1; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.closeConnection();
                 this.flushCellsData();
