@@ -4324,14 +4324,12 @@ var thelegendmodproject = function(t, e, i) {
                 return !mat[0] && !mat[1] ? 0 : mat[0] && !mat[1] ? 1 : mat[0] && mat[1] ? 2 : 3;
             },
             'setvnr':function(b){
-                if (typeof this.vector == 'undefined')this.vector = [[0,0],[1,0],[1,1],[0,1]];
-                if (typeof this.vnr == 'undefined')this.vnr=0;
-                var mat = this.vector[this.vnr];
-                if ((b==0||b==3) && (this.bgpi==1||this.bgpi==2))mat[0]=!mat[0];
-                if ((b==1||b==2) && (this.bgpi==0||this.bgpi==3))mat[0]=!mat[0];
-                if ((b==0||b==1) && (this.bgpi==2||this.bgpi==3))mat[1]=!mat[1];
-                if ((b==2||b==3) && (this.bgpi==1||this.bgpi==0))mat[1]=!mat[1];
-                this.vnr = this.dematrix(mat);
+                var mat = window.legendmod.vector[window.legendmod.vnr];
+                if ((b==0||b==3) && (window.legendmod.bgpi==1||window.legendmod.bgpi==2))mat[0]=!mat[0];
+                if ((b==1||b==2) && (window.legendmod.bgpi==0||window.legendmod.bgpi==3))mat[0]=!mat[0];
+                if ((b==0||b==1) && (window.legendmod.bgpi==2||window.legendmod.bgpi==3))mat[1]=!mat[1];
+                if ((b==2||b==3) && (window.legendmod.bgpi==1||window.legendmod.bgpi==0))mat[1]=!mat[1];
+                window.legendmod.vnr = this.dematrix(mat);
             },
             'updatevnr':function(){
                 var mm = 0;
@@ -5764,8 +5762,8 @@ var thelegendmodproject = function(t, e, i) {
             'sendPosition': function(cell, target2) {
                 if (this.isSocketOpen() && this.connectionOpened && this.clientKey) {
                     if (!window.autoPlay) {
-                        var t = this.vector[this.vnr][0] ? this.translateX(this.cursorX) : this.cursorX; //Sonia3
-                        var e = this.vector[this.vnr][1] ? this.translateY(this.cursorY) : this.cursorY; //Sonia3
+                        var t = window.legendmod.vector[window.legendmod.vnr][0] ? this.translateX(this.cursorX) : this.cursorX; //Sonia3
+                        var e = window.legendmod.vector[window.legendmod.vnr][1] ? this.translateY(this.cursorY) : this.cursorY; //Sonia3
                         if (!this.play && this.targeting || this.pause) {
                             t = this.targetX;
                             e = this.targetY;
@@ -6088,8 +6086,8 @@ var thelegendmodproject = function(t, e, i) {
                             s += 5;
                             var g = ~~Math.sqrt(100 * m);
                             this.ghostCells.push({
-                                'x': this.vector[this.vnr][0] ? this.translateX(d) : d, //Sonia3
-                                'y': this.vector[this.vnr][1] ? this.translateY(f) : f, //Sonia3
+                                'x': window.legendmod.vector[window.legendmod.vnr][0] ? this.translateX(d) : d, //Sonia3
+                                'y': window.legendmod.vector[window.legendmod.vnr][1] ? this.translateY(f) : f, //Sonia3
                                 'size': g,
                                 'mass': m,
                                 'inView': this.isInView(d, f, g)
@@ -6099,7 +6097,7 @@ var thelegendmodproject = function(t, e, i) {
                                 max=n; //Sonia3
                             } //Sonia3
                         }
-                        this.bgpi=this.calculatebgpi(this.ghostCells[max].x,this.ghostCells[max].y); //Sonia3
+                        window.legendmod.bgpi=this.calculatebgpi(this.ghostCells[max].x,this.ghostCells[max].y); //Sonia3
                         break;
                     case 85:
                         window.testobjectsOpcode85 = data;
@@ -6463,10 +6461,10 @@ var thelegendmodproject = function(t, e, i) {
                     var l = t.readUInt32LE(i);
                     if (i += 4, 0 == l) break;
                     var h = t.readInt32LE(i);
-                    if(this.vector[this.vnr][0])h=this.translateX(h); //Sonia3
+                    if(window.legendmod.vector[window.legendmod.vnr][0])h=this.translateX(h); //Sonia3
                     i += 4;
                     var c = t.readInt32LE(i);
-                    if(this.vector[this.vnr][1])c=this.translateY(c); //Sonia3
+                    if(window.legendmod.vector[window.legendmod.vnr][1])c=this.translateY(c); //Sonia3
                     i += 4;
                     var u = t.readUInt16LE(i);
                     i += 2;
