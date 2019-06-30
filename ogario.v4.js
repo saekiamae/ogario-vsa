@@ -5630,9 +5630,10 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector4v..")
+                console.log("Testing vector5g..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=0; //Sonia3
+                window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
                 this.closeConnection();
                 this.flushCellsData();
                 this.protocolKey = null;
