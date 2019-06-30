@@ -5663,7 +5663,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector3S..")
+                console.log("Testing vector4S..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
@@ -6039,9 +6039,11 @@ var thelegendmodproject = function(t, e, i) {
                         break;
                     case 17:
                         window.testobjectsOpcode17 = data;
-                        this.viewX = this.translateX(data.getFloat32(s, true));
+                        var x=data.getFloat32(s, true);
+                        this.viewX = window.legendmod.vector[window.legendmod.vnr][0]?this.translateX(x):x;
                         s += 4;
-                        this.viewY = this.translateY(data.getFloat32(s, true));
+                        var y=data.getFloat32(s, true);
+                        this.viewY = window.legendmod.vector[window.legendmod.vnr][1]?this.translateY(y):y;
                         s += 4;
                         this.scale = data.getFloat32(s, true);
                         break;
