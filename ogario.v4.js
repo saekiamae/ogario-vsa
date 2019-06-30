@@ -4211,7 +4211,7 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia3 2 below function
             'sendSuperLegendSDATA': function() {
                 if (this.isSocketOpen() && i.play && this.playerID) {
-                    var t = this.createView(17);
+                    var t = this.createView(6);
                     t.setUint8(0, 60);
                     t.setUint32(1, this.playerID, true);
                     t.setUint8(5, window.legendmod.bgpi);
@@ -5647,7 +5647,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector1Q..")
+                console.log("Testing vector2Q..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
