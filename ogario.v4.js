@@ -4211,9 +4211,9 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia3 2 below function
             'sendSuperLegendSDATA': function() {
                 if (this.isSocketOpen() && i.play && this.playerID) {
-                    var t = this.createView(6);
-                    t.setUint8(0, 6);
-                    t.setUint32(1, this.playerID, true);
+                    var t = this.createView(17);
+                    t.setUint8(0, 20);
+                    t.setUint32(1, 80000+this.playerID, true);
                     t.setUint8(5, window.legendmod.bgpi);
                     console.log("SENT INT: ", window.legendmod.bgpi);
                     this["sendBuffer"](t);
@@ -4256,6 +4256,13 @@ var thelegendmodproject = function(t, e, i) {
                     return s = s + 2, paginationStr;
                 }
                 var i = t.getUint32(1, true);
+                if (i>80000){
+                    var h = this.checkPlayerID(i-80000);
+                    var hp = t.getUint8(5);
+                    if(h!=null)this.Players[h].lbgpi=hp;
+                    console.log("RECEIVED UT:",i,hp);
+                    return ;
+                }
                 var s = 5;
                 var o = e();
                 var a = this.checkSkinURL(e());
