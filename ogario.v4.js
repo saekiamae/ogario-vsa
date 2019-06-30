@@ -5663,7 +5663,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector9Q..")
+                console.log("Testing vector2S..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
@@ -5796,7 +5796,7 @@ var thelegendmodproject = function(t, e, i) {
             'sendPosition': function(cell, target2) {
                 if (this.isSocketOpen() && this.connectionOpened && this.clientKey) {
                     if (!window.autoPlay) {
-                        var t = window.legendmod.vector[window.legendmod.vnr][0] ? this.translateX(this.cursorX) : this.cursorX; //Sonia3
+                        var t = window.legendmod.v/ector[window.legendmod.vnr][0] ? this.translateX(this.cursorX) : this.cursorX; //Sonia3
                         var e = window.legendmod.vector[window.legendmod.vnr][1] ? this.translateY(this.cursorY) : this.cursorY; //Sonia3
                         if (!this.play && this.targeting || this.pause) {
                             t = this.targetX;
@@ -6039,9 +6039,9 @@ var thelegendmodproject = function(t, e, i) {
                         break;
                     case 17:
                         window.testobjectsOpcode17 = data;
-                        this.viewX = data.getFloat32(s, true);
+                        this.viewX = this.translateX(data.getFloat32(s, true));
                         s += 4;
-                        this.viewY = data.getFloat32(s, true);
+                        this.viewY = this.translateY(data.getFloat32(s, true));
                         s += 4;
                         this.scale = data.getFloat32(s, true);
                         break;
