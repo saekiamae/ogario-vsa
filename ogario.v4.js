@@ -4382,7 +4382,7 @@ var thelegendmodproject = function(t, e, i) {
                 }
             },
             'updateTeamPlayers': function() {
-                this.sendPlayerPosition(),this.chatUsers = {}, this.top5 = [];
+                this.sendPlayerPosition(),this.sendPlayerUpdate(),this.chatUsers = {}, this.top5 = []; //Sonia3
                 this.updatevnr(); //Sonia3
                 var t = 0;
                 for (; t < this.teamPlayers.length; t++) {
@@ -5665,7 +5665,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector5S..")
+                console.log("Testing vector6S..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
