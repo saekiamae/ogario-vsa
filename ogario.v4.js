@@ -4096,6 +4096,9 @@ var thelegendmodproject = function(t, e, i) {
                     case 30:
                         this['updateTeamPlayerPosition'](t);
                         break;
+                    case 60: //Sonia3
+                        this['getSuperLegendSDATA'](t); //Sonia3
+                        break; //Sonia3
                     case 96:
                         break;
                     case 100:
@@ -4121,9 +4124,7 @@ var thelegendmodproject = function(t, e, i) {
                 null !== this[e] && this[e] === i || this.isSocketOpen() && (this['sendBuffer'](this['strToBuff'](t, i)), this[e] = i);
             },
             'sendPlayerNick': function() {
-                var v=ogarcopythelb.nick+window.legendmod.bgpi;
-                console.log("sending datt", v);
-                this['sendPlayerData'](10, 'lastSentNick', v); //Sonia3
+                this['sendPlayerData'](10, 'lastSentNick', ogarcopythelb.nick);
             },
             'sendPlayerClanTag': function() {
                 this['sendPlayerData'](11, 'lastSentClanTag', ogarcopythelb.clanTag);
@@ -4207,6 +4208,21 @@ var thelegendmodproject = function(t, e, i) {
                     this["sendBuffer"](t);
                 }
             },
+            //Sonia3 2 below function
+            'sendSuperLegendSDATA': function() {
+                if (this.isSocketOpen() && i.play && this.playerID) {
+                    var t = this.createView(17);
+                    t.setUint8(0, 60);
+                    t.setUint32(1, this.playerID, true);
+                    t.setUint8(5, window.legendmod.bgpi);
+                    this["sendBuffer"](t);
+                }
+            },
+            'getSuperLegendSDATA': function(t) {
+                var ids = t.getUint32(1, true);
+                var id =this.checkPlayerID(ids);
+                if (null!=id)this.teamPlayers[id].lbgpi=t.getUint8(5);
+            },
             'checkPlayerID': function(t) {
                 if (t)
                     for (var e = 0; e < this.teamPlayers.length; e++)
@@ -4234,10 +4250,7 @@ var thelegendmodproject = function(t, e, i) {
                 }
                 var i = t.getUint32(1, true);
                 var s = 5;
-                var or = e(); //Sonia3
-                var o = or.slice(0,-1); //Sonia3
-                var lbgpi = parseInt(or.slice(-1),10); //Sonia3
-                console.log("Reading ED",lbgpi,or);
+                var o = e();
                 var a = this.checkSkinURL(e());
                 var n = e();
                 var r = e();
@@ -4255,7 +4268,7 @@ var thelegendmodproject = function(t, e, i) {
                         this.nick = cb;
                         this.skinID = i;
                         this.skinURL = s;
-                        this.lbgpi=0; //Sonia3
+                        this.lbgpi=-1; //Sonia3
                         this.x = 0;
                         this.y = 0;
                         this.lastX = 0;
@@ -4342,11 +4355,11 @@ var thelegendmodproject = function(t, e, i) {
                     }
                 }
                 console.log("VMR UPDATE:",window.legendmod.vnr,mm,window.legendmod.playerMass,max,window.legendmod.bgpi);
-                if(mm>0 && mm>window.legendmod.playerMass)this.setvnr(max);
+                if(mm>0 && mm>window.legendmod.playerMass && max>=0)this.setvnr(max);
             },
             'updateTeamPlayers': function() {
+                this.sendPlayerPosition(),this.sendSuperLegendSDATA(),this.chatUsers = {}, this.top5 = []; //Sonia3
                 this.updatevnr(); //Sonia3
-                this.sendPlayerPosition(), this.chatUsers = {}, this.top5 = [];
                 var t = 0;
                 for (; t < this.teamPlayers.length; t++) {
                     var e = this.teamPlayers[t];
@@ -5631,7 +5644,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector7g..")
+                console.log("Testing vector2x..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=0; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
