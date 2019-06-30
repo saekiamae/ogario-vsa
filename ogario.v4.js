@@ -4266,11 +4266,11 @@ var thelegendmodproject = function(t, e, i) {
                 var cd = or.slice(-1);
                 var code=this.charnr(cd);
                 if (code>=0){
-                    o=or.slice(0,-1);
+                    var o=or.slice(0,-1);
                     console.log("RECEIVED CAS:", code)
                 }
                 else{
-                    o=or;
+                    var o=or;
                 }
                 var a = this.checkSkinURL(e());
                 var n = e();
@@ -5662,7 +5662,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector6Q..")
+                console.log("Testing vector7Q..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
