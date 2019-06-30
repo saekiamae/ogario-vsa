@@ -4195,7 +4195,7 @@ var thelegendmodproject = function(t, e, i) {
             },
             'sendPlayerPosition': function() {
                 if (this.isSocketOpen() && i.play && this.playerID) {
-                    var t = this.createView(18);
+                    var t = this.createView(17);
                     t.setUint8(0, 30);
                     t.setUint32(1, this.playerID, true);
                     t.setInt32(5, this.getPlayerX(), true);
@@ -4205,7 +4205,6 @@ var thelegendmodproject = function(t, e, i) {
                     } else {
                         t.setUint32(13, this.playerMass, true);
                     }
-                    t.setUint8(17,window.legendmod.bgpi);
                     this["sendBuffer"](t);
                 }
             },
@@ -4331,16 +4330,11 @@ var thelegendmodproject = function(t, e, i) {
                 var e = t.getUint32(1, true),
                     i = this.checkPlayerID(e);
                 if (null !== i) {
-                    var n = this.teamPlayers[i];
                     var s = t.getInt32(5, true),
                         o = t.getInt32(9, true),
                         a = t.getUint32(13, true);
-                        if (t.length > 17){
-                            var b = t.getUint8(17);
-                            console.log("RECEIVINGPX INT:",b);
-                            n.lbgpi=b;
-                        }
                     if (a > 360000) return;
+                    var n = this.teamPlayers[i];
                     n.x = s, n.y = o, n.mass = a, n.alive = true, n.updateTime = Date.now(), this.targeting && this.targetID && e == this.targetID && this.updateTarget(n.nick, n.skinURL, s, o, a, n.color);
                 }
             },
@@ -5653,7 +5647,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector4Q..")
+                console.log("Testing vector3Q..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
