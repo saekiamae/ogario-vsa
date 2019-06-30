@@ -4215,13 +4215,19 @@ var thelegendmodproject = function(t, e, i) {
                     t.setUint8(0, 60);
                     t.setUint32(1, this.playerID, true);
                     t.setUint8(5, window.legendmod.bgpi);
+                    console.log("SENT INT: ", window.legendmod.bgpi);
                     this["sendBuffer"](t);
                 }
             },
             'getSuperLegendSDATA': function(t) {
                 var ids = t.getUint32(1, true);
                 var id =this.checkPlayerID(ids);
-                if (null!=id)this.teamPlayers[id].lbgpi=t.getUint8(5);
+                if (null!=id){
+                    fi=t.getUint8(5);
+                    console.log("RECEIVED INT: ", fi);
+                    this.teamPlayers[id].lbgpi=fi;
+
+                }
             },
             'checkPlayerID': function(t) {
                 if (t)
@@ -5640,7 +5646,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector4x..")
+                console.log("Testing vector6x..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=-1; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
