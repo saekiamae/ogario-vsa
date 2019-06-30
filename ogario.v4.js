@@ -4222,6 +4222,7 @@ var thelegendmodproject = function(t, e, i) {
             'getSuperLegendSDATA': function(t) {
                 var ids = t.getUint32(1, true);
                 var id =this.checkPlayerID(ids);
+                console.log("PREREV:",id,ids)
                 if (null!=id){
                     fi=t.getUint8(5);
                     console.log("RECEIVED INT: ", fi);
@@ -5646,7 +5647,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector0Q..")
+                console.log("Testing vector1Q..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
