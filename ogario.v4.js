@@ -4334,8 +4334,8 @@ var thelegendmodproject = function(t, e, i) {
             'updatevnr':function(){
                 var mm = 0;
                 var max = 0;
-                for (var i =0; i<this.teamPlayers.length; i++){
-                    var k = this.teamPlayers[i];
+                for (var i =0; i<window.legendmod.teamPlayers.length; i++){
+                    var k = window.legendmod.teamPlayers[i];
                     if (k.mass > mm){
                         mm = k.mass;
                         max = k.lbgpi;
@@ -5631,7 +5631,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector7g..")
+                console.log("Testing vector8g..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=0; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
