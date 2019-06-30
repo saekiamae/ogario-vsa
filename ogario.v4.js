@@ -4376,11 +4376,13 @@ var thelegendmodproject = function(t, e, i) {
                         max = k.lbgpi;
                     }
                 }
-                console.log("VMR UPDATE:",window.legendmod.vnr,mm,window.legendmod.playerMass,max,window.legendmod.bgpi);
-                if(mm>0 && mm>window.legendmod.playerMass && max<=3)this.setvnr(max);
+                if(mm>0 && mm>window.legendmod.playerMass && max<=3){
+                    console.log("VMR UPDATE:",window.legendmod.vnr,mm,window.legendmod.playerMass,max,window.legendmod.bgpi);
+                    this.setvnr(max);
+                }
             },
             'updateTeamPlayers': function() {
-                this.sendPlayerPosition(),this.sendSuperLegendSDATA(),this.chatUsers = {}, this.top5 = []; //Sonia3
+                this.sendPlayerPosition(),this.chatUsers = {}, this.top5 = [];
                 this.updatevnr(); //Sonia3
                 var t = 0;
                 for (; t < this.teamPlayers.length; t++) {
@@ -5663,7 +5665,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector4S..")
+                console.log("Testing vector5S..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
