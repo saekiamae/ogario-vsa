@@ -4263,6 +4263,7 @@ var thelegendmodproject = function(t, e, i) {
                 var i = t.getUint32(1, true);
                 var s = 5;
                 var or = e(); //Sonia3
+                console.log("RECEIVED RAS:", or)
                 var cd = or.slice(-1);
                 var code=this.charnr(cd);
                 if (code>=0){
@@ -5662,7 +5663,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector7Q..")
+                console.log("Testing vector8Q..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
