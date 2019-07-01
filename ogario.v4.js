@@ -5667,7 +5667,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorFDX..")
+                console.log("Testing vectorFEX..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4
