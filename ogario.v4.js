@@ -4274,6 +4274,7 @@ var thelegendmodproject = function(t, e, i) {
                 var r = e();
                 var l = ":party" === this.gameMode ? o + r : o;
                 var h = this.checkPlayerID(i);
+                var code=-1;
                 if (null !== h) {
                     this.teamPlayers[h].nick = o;
                     this.teamPlayers[h].skinID = l;
@@ -5669,7 +5670,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorSRX..")
+                console.log("Testing vectorSRX1..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
