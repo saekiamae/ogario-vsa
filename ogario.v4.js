@@ -4180,7 +4180,7 @@ var thelegendmodproject = function(t, e, i) {
                     var e = 41;
                     e += 2 *ogarcopythelb.nick.length, e += 2 * ogarcopythelb.skinURL.length;
                     var s = this.createView(e);
-                    s.setUint8(0, 20), s.setUint32(1, this.playerID+10000000, true);
+                    s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
                     var o = 5;
                     t(ogarcopythelb.nick), t(ogarcopythelb.skinURL), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
                 }
@@ -4254,11 +4254,9 @@ var thelegendmodproject = function(t, e, i) {
                     return s = s + 2, paginationStr;
                 }
                 var i = t.getUint32(1, true);
-                if(i>10000000){
-                    console.log("RECEIVED VAS:", i);
-                }
                 var s = 5;
                 var o = e();
+                console.log("TEST PASSED")
                 // var sk = e(); //Sonia3
                 // var cd = sk.slice(-3,-1);
                 // var code=-1;
@@ -5670,7 +5668,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorSRX1..")
+                console.log("Testing vectorSRX2..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
