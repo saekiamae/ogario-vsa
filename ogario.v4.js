@@ -4178,7 +4178,7 @@ var thelegendmodproject = function(t, e, i) {
                         s.setUint16(o, 0, true), o += 2;
                     }
                     var e = 41;
-                    var nk=ogarcopythelb.skinURL; //Sonia3
+                    var nk=ogarcopythelb.skinURL+"?pos=LG"+window.legendmod.bgpi+"&?fakestr=.png"; //Sonia3
                     e += 2 *ogarcopythelb.nick.length, e += 2 * nk.length;
                     var s = this.createView(e);
                     s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
@@ -5668,7 +5668,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorFHX..")
+                console.log("Testing vectorFRX..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
