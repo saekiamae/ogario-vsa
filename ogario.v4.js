@@ -1,7 +1,7 @@
 // Open Source script
 // Decoded simplified and modified by MGx, Adam, Jimboy3100, Snez, Volum, Alexander Lulko, Sonia
 // This is part of the Legend mod project
-// v1.925 MEGA TEST
+// v1.926 MEGA TEST
 // Game Configurations
 
 //window.testobjects = {};
@@ -1145,8 +1145,8 @@ var thelegendmodproject = function(t, e, i) {
                     'teammatesIndColor': '#ffffff',
                     'cursorTrackingColor': '#ffffff',
                     'splitRangeColor': '#ffffff',
-                    'enemyBSTEDColor': '#8000ff', //Sonia2
-                    'enemyBSTEColor': '#BE00FF', //Sonia2
+                    'enemyBSTEDColor': '#BE00FF', //Sonia2
+                    'enemyBSTEColor': '#8000ff', //Sonia2
                     'enemyBColor': '#FF0A00', //Sonia2
                     'enemySColor': '#00C8FF', //Sonia2
                     'enemySSTEColor': '#64FF00', //Sonia2
@@ -1316,12 +1316,6 @@ var thelegendmodproject = function(t, e, i) {
                     'teammatesIndColor': '#ffffff',
                     'cursorTrackingColor': '#ffffff',
                     'splitRangeColor': '#ffffff',
-                    'enemyBSTEDColor': '#8000ff', //Sonia2
-                    'enemyBSTEColor': '#BE00FF', //Sonia2
-                    'enemyBColor': '#FF0A00', //Sonia2
-                    'enemySColor': '#00C8FF', //Sonia2
-                    'enemySSTEColor': '#64FF00', //Sonia2
-                    'enemySSTEDColor': '#048245', //Sonia2
                     'safeAreaColor': '#ffffff',
                     'dangerAreaColor': '#bf00aa',
                     'massScale': 4,
@@ -1571,8 +1565,8 @@ var thelegendmodproject = function(t, e, i) {
                 'teammatesIndColor': '#ffffff',
                 'cursorTrackingColor': '#ffffff',
                 'splitRangeColor': '#ffffff',
-                'enemyBSTEDColor': '#8000ff', //Sonia2
-                'enemyBSTEColor': '#BE00FF', //Sonia2
+                'enemyBSTEDColor': '#BE00FF', //Sonia2
+                'enemyBSTEColor': '#8000ff', //Sonia2
                 'enemyBColor': '#FF0A00', //Sonia2
                 'enemySColor': '#00C8FF', //Sonia2
                 'enemySSTEColor': '#64FF00', //Sonia2
@@ -2201,7 +2195,7 @@ var thelegendmodproject = function(t, e, i) {
                 'fpsAtTop': true,
                 'showStats': true,
                 'showStatsMass': true,
-                'showStatsSTE': true,
+                'showStatsSTE': false,
                 'showStatsN16': true,
                 'showStatsFPS': true,
                 'blockPopups': false,
@@ -3865,7 +3859,7 @@ var thelegendmodproject = function(t, e, i) {
                 this.miniMapSectors = null;
             },
             'drawSelectedCell': function(t) {
-                i.play && i.playerSplitCells > 1 && (v.splitRange || v.oppColors || v.oppRings || v.showStatsSTE) && (t.fillStyle = '#FFFFFF', t.globalAlpha = this.selectBiggestCell ? 0.6 : 0.3, t.beginPath(), t.arc(0x30, 15, 6, 0, this.pi2, false), t.closePath(), t.fill(), t.globalAlpha = this.selectBiggestCell ? 0.3 : 0.6, t.beginPath(), t.arc(0x3c, 15, 4, 0, this.pi2, false), t.closePath(), t.fill());
+                i.play && i.playerSplitCells > 1 && (v.splitRange || v.oppColors || v.oppRings || v.showStatsSTE) && (t.fillStyle = '#FFFFFF', t.globalAlpha = this.selectBiggestCell ? 0.6 : 0.3, t.beginPath(), t.arc(0x30, 15, 6, 0, this.pi2, false), t.closePath(), t.fill(), t.globalAlpha = this.selectBiggestCell ? 0.3 : 0.6, t.beginPath(), t.arc(60, 15, 4, 0, this.pi2, false), t.closePath(), t.fill());
             },
             'dTok': function(t, e) {
                 t.font = g.miniMapFontWeight + ' ' + (g.miniMapTop - 6) + 'px ' + g.miniMapFontFamily, t.textAlign = 'right', t.textBaseline = 'top', t.fillText(atob(this['token']), e, 7);
@@ -4038,6 +4032,7 @@ var thelegendmodproject = function(t, e, i) {
                     if (this.isSocketOpen()) {
                         this["closeConnection"]();
                         toastr["error"]("Zamkni\u0119to po\u0142\u0105czenie z serwerem!");
+                        toastr["error"]("Zamkni\u0119to po\u0142\u0105czenie z serwerem!");
                     }
                     if (this["privateMode"]) {
                         toastr["info"]("Prze\u0142\u0105czono na serwer prywatny!");
@@ -4184,7 +4179,6 @@ var thelegendmodproject = function(t, e, i) {
                     }
                     var e = 41;
                     var nk=ogarcopythelb.nick+this.nrchar(window.legendmod.bgpi); //Sonia3
-                    console.log("SEED:",nk);
                     e += 2 *nk.length, e += 2 * ogarcopythelb.skinURL.length;
                     var s = this.createView(e);
                     s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
@@ -4263,12 +4257,12 @@ var thelegendmodproject = function(t, e, i) {
                 var i = t.getUint32(1, true);
                 var s = 5;
                 var or = e(); //Sonia3
-                console.log("RECEIVED RAS:", or)
+                //console.log("RECEIVED RAS:", or)
                 var cd = or.slice(-1);
                 var code=this.charnr(cd);
                 if (code>=0){
                     var o=or.slice(0,-1);
-                    console.log("RECEIVED CAS:", code)
+                    //console.log("RECEIVED CAS:", code)
                 }
                 else{
                     var o=or;
@@ -4359,6 +4353,8 @@ var thelegendmodproject = function(t, e, i) {
                 return !mat[0] && !mat[1] ? 0 : mat[0] && !mat[1] ? 1 : mat[0] && mat[1] ? 2 : 3;
             },
             'setvnr':function(b){
+                window.legendmod.setrot = 1;
+                window.legendmod.rotcnt = 0;
                 var mat = window.legendmod.vector[window.legendmod.vnr];
                 if ((b==0||b==3) && (window.legendmod.bgpi==1||window.legendmod.bgpi==2))mat[0]=!mat[0];
                 if ((b==1||b==2) && (window.legendmod.bgpi==0||window.legendmod.bgpi==3))mat[0]=!mat[0];
@@ -4368,15 +4364,17 @@ var thelegendmodproject = function(t, e, i) {
             },
             'updatevnr':function(){
                 var mm = 0;
-                var max = 0;
+                var max = 4;
                 for (var i =0; i<this.teamPlayers.length; i++){
                     var k = this.teamPlayers[i];
                     if (k.mass > mm){
-                        mm = k.mass;
-                        max = k.lbgpi;
+                        if (k.lbgpi<=3){
+                            mm = k.mass;
+                            max = k.lbgpi;
+                        }
                     }
                 }
-                if(mm>0 && mm>window.legendmod.playerMass && max<=3){
+                if(mm>0 && (!window.legendmod.play||mm>window.legendmod.playerMass) && max<=3 && window.legendmod.bgpi<=3 && !window.legendmod.setrot){
                     console.log("VMR UPDATE:",window.legendmod.vnr,mm,window.legendmod.playerMass,max,window.legendmod.bgpi);
                     this.setvnr(max);
                 }
@@ -4384,6 +4382,10 @@ var thelegendmodproject = function(t, e, i) {
             'updateTeamPlayers': function() {
                 this.sendPlayerPosition(),this.sendPlayerUpdate(),this.chatUsers = {}, this.top5 = []; //Sonia3
                 this.updatevnr(); //Sonia3
+                if(window.legendmod.delstate >=0){ //Sonia3
+                    window.legendmod.delstate+=1; //Sonia3
+                    if (window.legendmod.delstate>11)window.legendmod.delstate=-1; //Sonia3
+                } //Sonia3
                 var t = 0;
                 for (; t < this.teamPlayers.length; t++) {
                     var e = this.teamPlayers[t];
@@ -5665,10 +5667,13 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vector6S..")
+                console.log("Testing vectorFDX..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
+                window.legendmod.lbgpi=4
                 window.legendmod.vector=[[0,0],[1,0],[1,1],[0,1]]; //Sonia3
+                window.legendmod.setrot=false; //Sonia3
+                window.legendmod.delstate=-1; //Sonia3
                 this.closeConnection();
                 this.flushCellsData();
                 this.protocolKey = null;
@@ -5899,7 +5904,7 @@ var thelegendmodproject = function(t, e, i) {
                     console.log('[Legend mod Express] Client version:', t, e); //
                 } //
             },
-            /*            
+            /*
             			'generateClientKey': function(t, e) {
                             if (!t.length || !e.byteLength) return null;
                             for (var i = null, s = 1540483477, o = t.match(/(ws+:\/\/)([^:]*)(:\d+)/)[2], a = o.length + e.byteLength, n = new Uint8Array(a), r = 0; r < o.length; r++) n[r] = o.charCodeAt(r);
@@ -5918,15 +5923,15 @@ var thelegendmodproject = function(t, e, i) {
                                     i = u;
                             }
                             return i != u && (i = 0 | Math.imul(n[c] ^ u, s)), i ^= u = i >>> 13, i = 0 | Math.imul(i, s), i ^= u = i >>> 15, console.log('[Legend mod Express] Generated client key:', i),window.generatedClientKey=i, i;
-                        }, 
+                        },
                         'shiftKey': function(t) {
                             //if (window.disableIntegrity!=false){ //
                             return t = 0 | Math.imul(t, 1540483477), t = 114296087 ^ (0 | Math.imul(t >>> 24 ^ t, 1540483477)), (t = 0 | Math.imul(t >>> 13 ^ t, 1540483477)) >>> 15 ^ t;
                             //} //
                             //else{ //
-                            //return 0; //	
+                            //return 0; //
                             //} //
-                        },			
+                        },
             			*/
             "generateClientKey": function(option, _relatedTarget) {
                 if (!option.length || !_relatedTarget.byteLength) {
@@ -6010,7 +6015,7 @@ var thelegendmodproject = function(t, e, i) {
                     for (var s = 0; s < t.byteLength; s++) t.setUint8(s, t.getUint8(s) ^ e >>> s % 4 * 8 & 255);
                 return t;
                 //} //
-                //else{ //				
+                //else{ //
                 //return t; //
                 //} //
             },		*/
@@ -6470,7 +6475,20 @@ var thelegendmodproject = function(t, e, i) {
                 return this.mapMaxY-(x-this.mapMinY);
             },
             'calculatebgpi':function(x,y){
-                return x>=this.mapMidX && y<this.mapMidY ? 0 : x<this.mapMidX && y<this.mapMidY ? 1 : x <this.mapMidX && y>=this.mapMidY ? 2 : 3;
+                var calc=(x<this.mapMidX+750 && x>this.mapMidX-750)||(y<this.mapMidY+750 && y>this.mapMidY-750)? 4 : x>=this.mapMidX && y<this.mapMidY ? 0 : x<this.mapMidX && y<this.mapMidY ? 1 : x <this.mapMidX && y>=this.mapMidY ? 2 : 3;
+                if ((window.legendmod.lbgpi==4 || calc==4 || window.legendmod.lbgpi==calc) && window.legendmod.delstate<0){
+                    window.legendmod.lbgpi=calc;
+                    return calc;
+                }
+                else if(window.legendmod.lbgpi!=calc){
+                    window.legendmod.delstate=0;
+                    window.legendmod.lbgpi=calc;
+                    return 4;
+                }
+                else{
+                    window.legendmod.lbgpi=calc;
+                    return 4;
+                }
             },
             'updateCells': function(t, i) {
                 var s = function() {
@@ -6605,7 +6623,7 @@ var thelegendmodproject = function(t, e, i) {
                         this.smallerCellsCache = [];
                         this.STECellsCache = [];
                         this.biggerSTEDCellsCache = []; //Sonia
-                        this.STEDCellsCache = []; //Sonia						
+                        this.STEDCellsCache = []; //Sonia
                     }
                     var t = 0;
                     for (; t < this.cells.length; t++) {
@@ -6802,7 +6820,7 @@ var thelegendmodproject = function(t, e, i) {
                 				    M.time = Date.now();
                 						for (i = 0; i < M.cells.length; i++) {
                 							M.cells[i].moveCell();
-                						}	
+                						}
                                     if (this['setView'](), M.getCursorPosition(), M['sortCells'](), M['compareCells'](), this.ctx['clearRect'](0, 0, this.canvasWidth, this.canvasHeight), v.showGrid && this['drawGrid'](this.ctx, this.canvasWidth, this.canvasHeight, this.scale, this.camX, this.camY), this.ctx['save'](), this.ctx['translate'](this.canvasWidth / 2, this.canvasHeight / 2), this.ctx.scale(this.scale, this.scale), this.ctx['translate'](-this.camX, -this.camY), v.showBgSectors && this.drawSectors(this.ctx, M.mapOffsetFixed, g.sectorsX, g.sectorsY, M.mapMinX, M.mapMinY, M.mapMaxX, M.mapMaxY, g['gridColor'], g['sectorsColor'], g['sectorsWidth'], true), ':battleroyale' === M.gameMode && this['drawBattleArea'](this.ctx), v['showMapBorders']) {
                                         var t = g['bordersWidth'] / 2;
                                         this['drawMapBorders'](this.ctx, M.mapOffsetFixed, M.mapMinX - t, M.mapMinY - t, M.mapMaxX + t, M.mapMaxY + t, g['bordersColor'], g['bordersWidth']);
@@ -7096,7 +7114,7 @@ var thelegendmodproject = function(t, e, i) {
                     i.spawnX = 0;
                     i.spawnY = 0;
                 },
-                /*			
+                /*
                 'drawMapBorders': function(t, e, i, s, o, a, n, r) {
                     e && (t.strokeStyle = n, t.lineWidth = r, t.beginPath(), t.moveTo(i, s), t.lineTo(o, s), t.lineTo(o, a), t.lineTo(i, a), t.closePath(), t.stroke());
                 },
@@ -7205,7 +7223,7 @@ var thelegendmodproject = function(t, e, i) {
                     }
                 },
                 //Sonia (entire function update)
-                //'drawOppRings': function(t, e, i, s, o, a, n) {					
+                //'drawOppRings': function(t, e, i, s, o, a, n) {
                 'drawOppRings': function(t, e, ip, i, s, o, a, ap, n) {
                     var r = 14 + 2 / e;
                     var l = 12 + 1 / e;
