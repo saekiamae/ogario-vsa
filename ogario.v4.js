@@ -4265,7 +4265,7 @@ var thelegendmodproject = function(t, e, i) {
                     //console.log("RECEIVED CAS:", code)
                 }
                 else{
-                    var o=or;
+                    var o=or + "[ℵ]";
                 }
                 var a = this.checkSkinURL(e());
                 var n = e();
