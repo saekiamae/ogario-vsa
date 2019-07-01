@@ -4085,7 +4085,7 @@ var thelegendmodproject = function(t, e, i) {
                     case 1:
                         this['sendPlayerUpdate']();
                         break;
-                    case 20:
+                    case 21:
                         this['updateTeamPlayer'](t);
                         break;
                     case 30:
@@ -4180,7 +4180,7 @@ var thelegendmodproject = function(t, e, i) {
                     var e = 41;
                     e += 2 *ogarcopythelb.nick.length, e += 2 * ogarcopythelb.skinURL.length;
                     var s = this.createView(e);
-                    s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
+                    s.setUint8(0, 21), s.setUint32(1, this.playerID, true);
                     var o = 5;
                     t(ogarcopythelb.nick), t(ogarcopythelb.skinURL), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
                 }
@@ -5668,7 +5668,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorSRX2..")
+                console.log("Testing vectorSRX3..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
