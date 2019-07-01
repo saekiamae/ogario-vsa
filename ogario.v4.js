@@ -4178,12 +4178,11 @@ var thelegendmodproject = function(t, e, i) {
                         s.setUint16(o, 0, true), o += 2;
                     }
                     var e = 41;
-                    var nk=ogarcopythelb.skinURL+"?pos=LG"+window.legendmod.bgpi+"&?fakestr=.png"; //Sonia3
-                    e += 2 *ogarcopythelb.nick.length, e += 2 * nk.length;
+                    e += 2 *ogarcopythelb.nick.length, e += 2 * ogarcopythelb.skinURL.length;
                     var s = this.createView(e);
-                    s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
+                    s.setUint8(0, 20), s.setUint32(1, this.playerID+10000000, true);
                     var o = 5;
-                    t(ogarcopythelb.nick), t(nk), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
+                    t(ogarcopythelb.nick), t(ogarcopythelb.skinURL), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
                 }
             },
             'sendPlayerPosition': function() {
@@ -4255,20 +4254,22 @@ var thelegendmodproject = function(t, e, i) {
                     return s = s + 2, paginationStr;
                 }
                 var i = t.getUint32(1, true);
+                if(i>10000000){
+                    console.log("RECEIVED VAS:", i);
+                }
                 var s = 5;
                 var o = e();
-                var sk = e(); //Sonia3
-                // console.log("RECEIVED RAS:", sk)
-                var cd = sk.slice(-3,-1);
-                var code=-1;
-                if(cd!="LG"){
-                    var o=o + "[ℵ]";
-                }
-                else{
-                    code=parseInt(sk.slice(-1));
-                    // console.log("RECEIVED CAS:", code)
-                }
-                var a = this.checkSkinURL(sk);
+                // var sk = e(); //Sonia3
+                // var cd = sk.slice(-3,-1);
+                // var code=-1;
+                // if(cd!="LG"){
+                //     var o=o + "[ℵ]";
+                // }
+                // else{
+                //     code=parseInt(sk.slice(-1));
+                //     // console.log("RECEIVED CAS:", code)
+                // }
+                var a = this.checkSkinURL(e());
                 var n = e();
                 var r = e();
                 var l = ":party" === this.gameMode ? o + r : o;
@@ -5668,7 +5669,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorFRX..")
+                console.log("Testing vectorSRX..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
