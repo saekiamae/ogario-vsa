@@ -6902,6 +6902,10 @@ var thelegendmodproject = function(t, e, i) {
                 'getZoom': function() {
                     return Math.max(this.canvasWidth / 1080, this.canvasHeight / 1920) * M.zoomValue;
                 },
+                //Sonia5
+                'sleep': function(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                },
                 /*                'renderFrame': function() {
                                     //for (M.time = Date.now(), e = 0; e < M.cells.length; e++) M.cells[e].moveCell();
                 				    M.time = Date.now();
@@ -6918,8 +6922,9 @@ var thelegendmodproject = function(t, e, i) {
                                     for (e = 0; e < M.cells.length; e++) M.cells[e].draw(this.ctx);
                                     this.ctx['restore'](), ':teams' === M.gameMode && this.pieChart && this.pieChart.width && this.ctx.drawImage(this.pieChart, this.canvasWidth - this.pieChart.width - 10, 10);
                                 }, */
-                'renderFrame': function() {
+                'renderFrame': async function() {
                     //this.ctx.start2D();
+                    await this.sleep(1);
                     M.time = Date.now();
                     for (i = 0; i < M.cells.length; i++) {
                         M.cells[i].moveCell();
