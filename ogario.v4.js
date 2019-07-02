@@ -3997,7 +3997,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorS1..")
+                console.log("Testing vectorS3..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4130,15 +4130,15 @@ var thelegendmodproject = function(t, e, i) {
                 this.socket['send'](t['buffer']);
             },
             //Sonia4
-            'sendSLG': function(t) {
-                this.SLGsocket['send'](t);
+            'sendSLG': function(i,t) {
+                var s=this.packSLG(i);
+                if(s!=null)this.SLGsocket['send'](s);
             },
             'handleMessage': function(t) {
                 this['readMessage'](new DataView(t['data']));
             },
             //Sonia4
             'handleSLGMessage': function(t) {
-                console.log("MESSAGE ON",t.data,typeof (t.data));
                 this['SLGHandler'](t.data);
             },
             'readMessage': function(t) {
@@ -4163,15 +4163,47 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'SLGHandler': function(t) {
-                console.log("MESSAGE IS HERE");
+                var s = this.unpackSLG(t);
+                if(s == null)return;
                 switch (t.charAt(0)) {
-                    case "A":
-                        console.log("MESSAGE A RECEIVED");
-                        break;
-                    case "B":
-                        console.log("MESSAGE B RECEIVED");
+                    case "R":
+                        console.log("MESSAGE RECEIVED",s);
+                        this.getSuperLegendSDATA(s);
                         break;
                 }
+            },
+            //Sonia4
+            'packSLG': function(t){
+                t+=("00" + ogarcopythelb.clanTag.length).slice(-2);
+                t+=ogarcopythelb.clanTag;
+                if(!window.legendmod.ws)return null;
+                t+=("00" + window.legendmod.ws.length).slice(-2);
+                t+=window.legendmod.ws;
+                t+=("000000" + this.playerID).slice(-6);
+                return t;
+            },
+            //Sonia4
+            'unpackSLG': function(t){
+                t=t.slice(1);
+                var len=parseInt(t.slice(0,2));
+                var tag=t.slice(2,2+len);
+                if(tag!=ogarcopythelb.clanTag)return null;
+                t=t.slice(2+len);
+                var len=parseInt(t.slice(0,2));
+                var ws=t.slice(2,2+len);
+                if(ws!=window.legendmod.ws)return null;
+                t=t.slice(2+len);
+                return t;
+            },
+            //Sonia4
+            'getSLGID': function(t){
+                t=t.slice(0,6);
+                return parseInt(t);
+            },
+            //Sonia4
+            'getSLGVal': function(t){
+                t=t.slice(6);
+                return t;
             },
             'sendPlayerState': function(t) {
                 if (this.isSocketOpen()) {
@@ -4281,33 +4313,24 @@ var thelegendmodproject = function(t, e, i) {
                     this["sendBuffer"](t);
                 }
             },
-            //Sonia3 4 below function
+            //Sonia4
             'sendSuperLegendSDATA': function() {
-                if (this.isSocketOpen() && i.play && this.playerID) {
-                    var t = this.createView(6);
-                    t.setUint8(0, 6);
-                    t.setUint32(1, this.playerID, true);
-                    t.setUint8(5, window.legendmod.bgpi);
-                    console.log("SENT INT: ", window.legendmod.bgpi);
-                    this["sendBuffer"](t);
+                if (this.isSLGSocketOpen() && i.play && this.playerID) {
+                    var s="";
+                    s+= "0"+window.legendmod.bgpi;
+                    this.sendSLG("R",s);
                 }
             },
+            //Sonia4
             'getSuperLegendSDATA': function(t) {
-                var ids = t.getUint32(1, true);
+                var ids = this.getSLGID(t);
                 var id =this.checkPlayerID(ids);
-                console.log("PREREV:",id,ids)
                 if (null!=id){
-                    fi=t.getUint8(5);
-                    console.log("RECEIVED INT: ", fi);
-                    this.teamPlayers[id].lbgpi=fi;
-
+                    var s=this.getSLGVal(t);
+                    var lbgpi=s.slice(0,1);
+                    console.log("LBGPI:",lbgpi);
+                    this.teamPlayers[id].lbgpi=lbgpi;
                 }
-            },
-            'charnr': function(c){
-                return c=='⌜' ? 1 : c=='⌝' ? 0 : c=='⌞' ? 2 : c=='⌟' ? 3 : c=='¨' ? 4 : -1;
-            },
-            'nrchar': function(n){
-                return n==1 ? '⌜': n==0 ? '⌝' : n==2 ? '⌞' : n==3 ? '⌟' : n==4 ? '¨' : -1;
             },
             'checkPlayerID': function(t) {
                 if (t)
@@ -4337,17 +4360,6 @@ var thelegendmodproject = function(t, e, i) {
                 var i = t.getUint32(1, true);
                 var s = 5;
                 var o = e();
-                // var sk = e(); //Sonia3
-                // // console.log("RECEIVED RAS:", sk)
-                // var cd = sk.slice(-3,-1);
-                // var code=-1;
-                // if(cd!="LG"){
-                //     var o=o + "[ℵ]";
-                // }
-                // else{
-                //     code=parseInt(sk.slice(-1));
-                //     // console.log("RECEIVED CAS:", code)
-                // }
                 var a = this.checkSkinURL(e());
                 var n = e();
                 var r = e();
@@ -4357,7 +4369,6 @@ var thelegendmodproject = function(t, e, i) {
                     this.teamPlayers[h].nick = o;
                     this.teamPlayers[h].skinID = l;
                     this.teamPlayers[h].skinURL = a;
-                    // if (code>=0) this.teamPlayers[h].lbgpi = code;
                     this.teamPlayers[h].setColor(r, n);
                 } else {
                     var c = new function(envId, cb, i, s) {
@@ -4461,7 +4472,7 @@ var thelegendmodproject = function(t, e, i) {
                 }
             },
             'updateTeamPlayers': function() {
-                this.sendPlayerPosition(),this.sendPlayerUpdate(),this.chatUsers = {}, this.top5 = []; //Sonia3
+                this.sendPlayerPosition(),this.sendSuperLegendSDATA(),this.chatUsers = {}, this.top5 = []; //Sonia3
                 this.updatevnr(); //Sonia3
                 if(window.legendmod.delstate >=0){ //Sonia3
                     window.legendmod.delstate+=1; //Sonia3
