@@ -4029,7 +4029,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorK8..")
+                console.log("Testing vectorK9..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4437,7 +4437,7 @@ var thelegendmodproject = function(t, e, i) {
                                         options.strokeText(this.nick, w, h - (2 * g.miniMapTeammatesSize + 2));
                                     }
                                     options.fillStyle = g.miniMapNickColor;
-                                    options.fillText(this.nick, w, h - (2 * g.miniMapTeammatesSize + 2));
+                                    options.fillText(this.nick+"[ℵ]", w, h - (2 * g.miniMapTeammatesSize + 2));
                                 }
                                 options.beginPath();
                                 options.arc(w, h, g.miniMapTeammatesSize, 0, this.pi2, false);
