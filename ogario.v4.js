@@ -3997,7 +3997,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorS7..")
+                console.log("Testing vectorS8..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4261,10 +4261,8 @@ var thelegendmodproject = function(t, e, i) {
                 }
                 if (this.isSLGSocketOpen()){
                     var b = this.createView(4);
-                    b.setUint8(0,61);
-                    b.setUint8(1,62);
-                    b.setUint8(2,63);
-                    b.setUint8(3,64);
+                    b.setUint16(0,"a");
+                    b.setUint16(2,"b");
                     this.sendSLGBuffer(b)
                 }
             },
