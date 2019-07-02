@@ -3997,7 +3997,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorS9..")
+                console.log("Testing vectorS1..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4130,14 +4130,8 @@ var thelegendmodproject = function(t, e, i) {
                 this.socket['send'](t['buffer']);
             },
             //Sonia4
-            'sendSLGBuffer': function(t) {
-                this.SLGsocket['send'](t['buffer']);
-                console.log("MESSAGE SENT",typeof(t['buffer']));
-            },
-            //Sonia4
             'sendSLG': function(t) {
                 this.SLGsocket['send'](t);
-                console.log("MESSAGE SENT",typeof(t['buffer']));
             },
             'handleMessage': function(t) {
                 this['readMessage'](new DataView(t['data']));
@@ -4145,7 +4139,7 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia4
             'handleSLGMessage': function(t) {
                 console.log("MESSAGE ON",t.data,typeof (t.data));
-                this['SLGHandler'](new DataView(t['data']));
+                this['SLGHandler'](t.data);
             },
             'readMessage': function(t) {
                 switch (t.getUint8(0)) {
@@ -4170,9 +4164,12 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia4
             'SLGHandler': function(t) {
                 console.log("MESSAGE IS HERE");
-                switch (t.getUint8(0)) {
-                    case 7:
-                        console.log("MESSAGE RECEIVED");
+                switch (t.charAt(0)) {
+                    case "A":
+                        console.log("MESSAGE A RECEIVED");
+                        break;
+                    case "B":
+                        console.log("MESSAGE B RECEIVED");
                         break;
                 }
             },
@@ -4265,10 +4262,8 @@ var thelegendmodproject = function(t, e, i) {
                     t(ogarcopythelb.nick), t(nk), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
                 }
                 if (this.isSLGSocketOpen()){
-                    var b = this.createView(4);
-                    b.setUint16(0,"a");
-                    b.setUint16(2,"b");
-                    this.sendSLG("art")
+                    this.sendSLG("A");
+                    this.sendSLG("B");
                 }
             },
             'sendPlayerPosition': function() {
