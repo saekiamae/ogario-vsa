@@ -3938,11 +3938,9 @@ var thelegendmodproject = function(t, e, i) {
             },
             'setParty': function() {
                 var t = $('#party-token').val();
-                console.log("tParty:",t);
                 if (this.gameMode = i.gameMode = $('#gamemode').val(), this.setQuest(), ':party' === this.gameMode && t) {
                     var e = t; - 1 != t.indexOf('#') && (e = (t = t.split('#'))[1]), this.partyToken !== e && (this.partyToken = e, this.flushSkinsMap(), this.flushChatData(), this.cancelTargeting());
                 }
-                console.log("eParty:",e)
             },
             'createParty': function() {
                 $('#create-party-btn').click();
@@ -4031,17 +4029,11 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorT93..")
+                console.log("Testing vectorT94..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
                     this.socket['binaryType'] = 'arraybuffer';
-                //Sonia4
-                console.log('[Legend mod Express] Connecting to SLG'),
-                    //this.room = ogarcopythelb.clanTag+"-"+window.legendmod.ws.match("-((\w|\d){6,7}\.")[1],
-                    //console.log(this.room),
-                    this.SLGsocket = new WebSocket("wss://connect.websocket.in/3Q-SoniaSLG_453dsV?room_id=6"),
-                    this.SLGsocket['binaryType'] = 'arraybuffer';
                 var t = this;
                 this.socket['onopen'] = function() {
                     console.log('[Legend mod Express] Socket open');
@@ -4051,41 +4043,39 @@ var thelegendmodproject = function(t, e, i) {
                     t['sendBuffer'](e);
                     t.sendPartyData();
                 }
-                //Sonia4
-                this.SLGsocket['onopen'] = function() {
-                    console.log('[Legend mod Express] SLG socket open');
-                    var e = t.createView(3);
-                    e.setUint8(0, 0);
-                    e.setUint16(1, 401, true);
-                    t['sendBuffer'](e);
-                    t.sendPartyData();
-                }
                 this.socket['onmessage'] = function(e) {
                     t['handleMessage'](e);
-                }
-                //Sonia4
-                this.SLGsocket['onmessage'] = function(e) {
-                    t['handleSLGMessage'](e);
                 }
                 this.socket['onclose'] = function(e) {
                     //t.flushData();
                     console.log('[Legend mod Express] Socket close', e);
-                }
-                //Sonia4
-                this.SLGsocket['onclose'] = function(e) {
-                    //t.flushData();
-                    console.log('[Legend mod Express] SLG socket close', e);
                 }
                 this.socket['onerror'] = function(e) {
                     //t.flushData();
                     console.log('[Legend mod Express] Socket error', e);
                     window.noOgarioSocket=true;
                 };
-                //Sonia4
+            },
+            //Sonia6
+            'SLGconnect': function(srv) {
+                this.closeSLGConnection();
+                this.room = ogarcopythelb.clanTag+"-"+t.match("-((\w|\d){6,7}\.")[1];
+                console.log('[Legend mod Express] Connecting to SLG:',this.room);
+                this.SLGsocket = new WebSocket("wss://connect.websocket.in/3Q-SoniaSLG_453dsV?room_id=6");
+                this.SLGsocket['binaryType'] = 'arraybuffer';
+                this.SLGsocket['onopen'] = function() {
+                    console.log('[Legend mod Express] SLG socket open');
+                }
+                this.SLGsocket['onmessage'] = function(e) {
+                    t['handleSLGMessage'](e);
+                }
+                this.SLGsocket['onclose'] = function(e) {
+                    //t.flushData();
+                    console.log('[Legend mod Express] SLG socket close', e);
+                }
                 this.SLGsocket['onerror'] = function(e) {
                     //t.flushData();
                     console.log('[Legend mod Express] SLG socket error', e);
-                    window.noOgarioSocket=true;
                     window.noSLGSocket=true;
                 };
             },
@@ -4098,6 +4088,16 @@ var thelegendmodproject = function(t, e, i) {
                     this.socket = null;
                 }
                 //Sonia4
+                if (this.SLGsocket) {
+                    this.SLGsocket['onmessage'] = null;
+                    try {
+                        this.SLGsocket['close']();
+                    } catch (ogarcloseconlabel) {}
+                    this.SLGsocket = null;
+                }
+            },
+            //Sonia6
+            'closeSLGConnection': function() {
                 if (this.SLGsocket) {
                     this.SLGsocket['onmessage'] = null;
                     try {
@@ -5790,6 +5790,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
+                window.legendmod3.SLGconnect(t);
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
