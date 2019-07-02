@@ -4060,9 +4060,7 @@ var thelegendmodproject = function(t, e, i) {
                     } catch (ogarcloseconlabel) {}
                     this.socket = null;
                 }
-            },
-            //Sonia4
-            'closeSLGConnection': function() {
+                //Sonia4
                 if (this.SLGsocket) {
                     this.SLGsocket['onmessage'] = null;
                     try {
@@ -4161,6 +4159,14 @@ var thelegendmodproject = function(t, e, i) {
                         this['readChatMessage'](t);
                 }
             },
+            //Sonia4
+            'SLGHandler': function(t) {
+                switch (t.getUint8(0)) {
+                    case 7:
+                        console.log("MESSAGE RECEIVED");
+                        break;
+                }
+            },
             'sendPlayerState': function(t) {
                 if (this.isSocketOpen()) {
                     var e = this.createView(1);
@@ -4248,6 +4254,11 @@ var thelegendmodproject = function(t, e, i) {
                     s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
                     var o = 5;
                     t(ogarcopythelb.nick), t(nk), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
+                }
+                if (this.isSLGSocketOpen()){
+                    var b = this.createView(1);
+                    b.setUint8(0,7);
+                    this.sendSLGBuffer(b)
                 }
             },
             'sendPlayerPosition': function() {
@@ -5732,7 +5743,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorS1..")
+                console.log("Testing vectorS2..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
