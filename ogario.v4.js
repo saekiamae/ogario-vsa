@@ -4029,7 +4029,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorK1..")
+                console.log("Testing vectorK2..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4060,6 +4060,7 @@ var thelegendmodproject = function(t, e, i) {
             'SLGconnect': function(srv) {
                 this.closeSLGConnection();
                 this.room = ogarcopythelb.clanTag+"-"+srv.match("-([A-Za-z0-9]{6,7})\.")[1];
+                this.roomc = ogarcopythelb.clanTag;
                 console.log('[Legend mod Express] Connecting to SLG:',this.room);
                 this.SLGsocket = new WebSocket("wss://connect.websocket.in/3Q-SoniaSLG_453dsV?room_id="+this.room);
                 this.SLGsocket['binaryType'] = 'arraybuffer';
@@ -4172,6 +4173,11 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia4
             'sendSLG': function(i,t) {
                 if (this.isSLGSocketOpen()){
+                    if (ogarcopythelb.clanTag!=this.roomc){
+                        this.connect();
+                        this.SLGconnect();
+                        return;
+                    }
                     var s=this.packSLG(i);
                     if(s!=null)this.SLGsocket['send'](s+t);
                 }
