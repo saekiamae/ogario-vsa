@@ -4001,6 +4001,10 @@ var thelegendmodproject = function(t, e, i) {
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
                     this.socket['binaryType'] = 'arraybuffer';
+                //Sonia4
+                console.log('[Legend mod Express] Connecting to SLG'),
+                    this.SLGsocket = new WebSocket("wss://connect.websocket.in/3Q-SoniaSLG_453dsV?room_id=6"),
+                    this.SLGsocket['binaryType'] = 'arraybuffer';
                 var t = this;
                 this.socket['onopen'] = function() {
                     console.log('[Legend mod Express] Socket open');
@@ -4010,17 +4014,42 @@ var thelegendmodproject = function(t, e, i) {
                     t['sendBuffer'](e);
                     t.sendPartyData();
                 }
+                //Sonia4
+                this.SLGsocket['onopen'] = function() {
+                    console.log('[Legend mod Express] SLG socket open');
+                    var e = t.createView(3);
+                    e.setUint8(0, 0);
+                    e.setUint16(1, 401, true);
+                    t['sendBuffer'](e);
+                    t.sendPartyData();
+                }
                 this.socket['onmessage'] = function(e) {
                     t['handleMessage'](e);
+                }
+                //Sonia4
+                this.SLGsocket['onmessage'] = function(e) {
+                    t['handleSLGMessage'](e);
                 }
                 this.socket['onclose'] = function(e) {
                     //t.flushData();
                     console.log('[Legend mod Express] Socket close', e);
                 }
+                //Sonia4
+                this.SLGsocket['onclose'] = function(e) {
+                    //t.flushData();
+                    console.log('[Legend mod Express] SLG socket close', e);
+                }
                 this.socket['onerror'] = function(e) {
                     //t.flushData();
                     console.log('[Legend mod Express] Socket error', e);
                     window.noOgarioSocket=true;
+                };
+                //Sonia4
+                this.SLGsocket['onerror'] = function(e) {
+                    //t.flushData();
+                    console.log('[Legend mod Express] SLG socket error', e);
+                    window.noOgarioSocket=true;
+                    window.noSLGSocket=true;
                 };
             },
             'closeConnection': function() {
@@ -4030,6 +4059,16 @@ var thelegendmodproject = function(t, e, i) {
                         this.socket['close']();
                     } catch (ogarcloseconlabel) {}
                     this.socket = null;
+                }
+            },
+            //Sonia4
+            'closeSLGConnection': function() {
+                if (this.SLGsocket) {
+                    this.SLGsocket['onmessage'] = null;
+                    try {
+                        this.SLGsocket['close']();
+                    } catch (ogarcloseconlabel) {}
+                    this.SLGsocket = null;
                 }
             },
             'reconnect': function() {
@@ -4064,6 +4103,10 @@ var thelegendmodproject = function(t, e, i) {
             'isSocketOpen': function() {
                 return null !== this.socket && this.socket['readyState'] === this.socket['OPEN'];
             },
+            //Sonia4 Below
+            'isSLGSocketOpen': function() {
+                return null !== this.SLGsocket && this.SLGsocket['readyState'] === this.SLGsocket['OPEN'];
+            },
             "writeUint32": function(data, value) {
                 for (; !![];) {
                     if ((value & -128) == 0) {
@@ -4087,8 +4130,16 @@ var thelegendmodproject = function(t, e, i) {
             'sendBuffer': function(t) {
                 this.socket['send'](t['buffer']);
             },
+            //Sonia4
+            'sendSLGBuffer': function(t) {
+                this.SLGsocket['send'](t['buffer']);
+            },
             'handleMessage': function(t) {
                 this['readMessage'](new DataView(t['data']));
+            },
+            //Sonia4
+            'handleSLGMessage': function(t) {
+                this['SLGHandler'](new DataView(t['data']));
             },
             'readMessage': function(t) {
                 switch (t.getUint8(0)) {
@@ -5681,7 +5732,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorFGX..")
+                console.log("Testing vectorS1..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
