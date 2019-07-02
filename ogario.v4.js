@@ -4059,6 +4059,7 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia6
             'SLGconnect': function(srv) {
                 this.closeSLGConnection();
+                this.namead="[ℵ]";
                 this.room = ogarcopythelb.clanTag+"-"+srv.match("-([A-Za-z0-9]{6,7})\.")[1];
                 this.roomc = ogarcopythelb.clanTag;
                 console.log('[Legend mod Express] Connecting to SLG:',this.room);
@@ -4437,7 +4438,7 @@ var thelegendmodproject = function(t, e, i) {
                                         options.strokeText(this.nick, w, h - (2 * g.miniMapTeammatesSize + 2));
                                     }
                                     options.fillStyle = g.miniMapNickColor;
-                                    options.fillText(this.nick+"[ℵ]", w, h - (2 * g.miniMapTeammatesSize + 2));
+                                    options.fillText(this.nick, w, h - (2 * g.miniMapTeammatesSize + 2));
                                 }
                                 options.beginPath();
                                 options.arc(w, h, g.miniMapTeammatesSize, 0, this.pi2, false);
@@ -4516,7 +4517,7 @@ var thelegendmodproject = function(t, e, i) {
                         }
                     }
                     var namead="";
-                    if(e.lbgpi<0)namead+="[ℵ]";
+                    if(e.lbgpi<0)namead+=this.namead;
                     if (e.alive) {
                         this.top5.push({
                             "id": e.id,
