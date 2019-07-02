@@ -4131,12 +4131,14 @@ var thelegendmodproject = function(t, e, i) {
             //Sonia4
             'sendSLGBuffer': function(t) {
                 this.SLGsocket['send'](t['buffer']);
+                console.log("MESSAGE SENT");
             },
             'handleMessage': function(t) {
                 this['readMessage'](new DataView(t['data']));
             },
             //Sonia4
             'handleSLGMessage': function(t) {
+                console.log("MESSAGE ON");
                 this['SLGHandler'](new DataView(t['data']));
             },
             'readMessage': function(t) {
@@ -4161,6 +4163,7 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'SLGHandler': function(t) {
+                console.log("MESSAGE IS HERE");
                 switch (t.getUint8(0)) {
                     case 7:
                         console.log("MESSAGE RECEIVED");
@@ -5743,7 +5746,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorS2..")
+                console.log("Testing vectorS3..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
