@@ -4029,7 +4029,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorK3..")
+                console.log("Testing vectorK4..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4068,7 +4068,7 @@ var thelegendmodproject = function(t, e, i) {
                     console.log('[Legend mod Express] SLG socket open');
                 }
                 this.SLGsocket['onmessage'] = function(e) {
-                    t['handleSLGMessage'](e);
+                    this.handleSLGMessage(e);
                 }
                 this.SLGsocket['onclose'] = function(e) {
                     //t.flushData();
