@@ -4138,7 +4138,7 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'handleSLGMessage': function(t) {
-                console.log("MESSAGE ON");
+                console.log("MESSAGE ON",t,typeof (t));
                 this['SLGHandler'](new DataView(t['data']));
             },
             'readMessage': function(t) {
@@ -5746,7 +5746,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorS3..")
+                console.log("Testing vectorS4..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
