@@ -3997,7 +3997,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorT4..")
+                console.log("Testing vectorT4.5..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -6924,7 +6924,7 @@ var thelegendmodproject = function(t, e, i) {
                                 }, */
                 'renderFrame': async function() {//Sonia5
                     //this.ctx.start2D();
-                    await this.sleep(10); //Sonia5
+                    await this.sleep(5); //Sonia5
                     M.time = Date.now();
                     for (i = 0; i < M.cells.length; i++) {
                         M.cells[i].moveCell();
