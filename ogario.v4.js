@@ -3997,6 +3997,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
+                console.log("Testing vectorS5..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4138,7 +4139,7 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'handleSLGMessage': function(t) {
-                console.log("MESSAGE ON",t,typeof (t));
+                console.log("MESSAGE ON",t.data,typeof (t.data));
                 this['SLGHandler'](new DataView(t['data']));
             },
             'readMessage': function(t) {
@@ -5746,7 +5747,6 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorS4..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
