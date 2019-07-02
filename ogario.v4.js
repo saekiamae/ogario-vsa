@@ -3938,10 +3938,11 @@ var thelegendmodproject = function(t, e, i) {
             },
             'setParty': function() {
                 var t = $('#party-token').val();
-                console.log(t);
+                console.log("tParty:",t);
                 if (this.gameMode = i.gameMode = $('#gamemode').val(), this.setQuest(), ':party' === this.gameMode && t) {
                     var e = t; - 1 != t.indexOf('#') && (e = (t = t.split('#'))[1]), this.partyToken !== e && (this.partyToken = e, this.flushSkinsMap(), this.flushChatData(), this.cancelTargeting());
                 }
+                console.log("eParty:",e)
             },
             'createParty': function() {
                 $('#create-party-btn').click();
@@ -4030,7 +4031,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorT91..")
+                console.log("Testing vectorT92..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
