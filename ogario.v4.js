@@ -4029,7 +4029,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("Testing vectorK5..")
+                console.log("Testing vectorK6..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4073,7 +4073,7 @@ var thelegendmodproject = function(t, e, i) {
                 }
                 this.SLGsocket['onclose'] = function(e) {
                     //t.flushData();
-                    console.log('[Legend mod Express] SLG socket close', e);
+                    console.log('[Legend mod Express] SLG socket close');
                 }
                 this.SLGsocket['onerror'] = function(e) {
                     //t.flushData();
@@ -4222,25 +4222,12 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'packSLG': function(t){
-                t+=("00" + ogarcopythelb.clanTag.length).slice(-2);
-                t+=ogarcopythelb.clanTag;
-                if(!window.legendmod.ws)return null;
-                t+=("00" + window.legendmod.ws.length).slice(-2);
-                t+=window.legendmod.ws;
                 t+=("000000" + this.playerID).slice(-6);
                 return t;
             },
             //Sonia4
             'unpackSLG': function(t){
                 t=t.slice(1);
-                var len=parseInt(t.slice(0,2));
-                var tag=t.slice(2,2+len);
-                if(tag!=ogarcopythelb.clanTag)return null;
-                t=t.slice(2+len);
-                var len=parseInt(t.slice(0,2));
-                var ws=t.slice(2,2+len);
-                if(ws!=window.legendmod.ws)return null;
-                t=t.slice(2+len);
                 return t;
             },
             //Sonia4
