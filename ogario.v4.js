@@ -1,7 +1,7 @@
 // Open Source script
 // Decoded simplified and modified by MGx, Adam, Jimboy3100, Snez, Volum, Alexander Lulko, Sonia
 // This is part of the Legend mod project
-// v1.926 MEGA TEST
+// v1.942 MEGA TEST
 // Game Configurations
 
 //window.testobjects = {};
@@ -207,6 +207,58 @@ function LowerCase(str) {
 }
 var legendflags = ["argentina", "belarus", "cambodia", "isis", "jamaica", "mexico", "pakistan", "poland", "scotland", "somalia", "spain", "sweden", "switzerland", "thailand", "venezuela", "2ch", "4chan", "8ch", "9gag", "cameron", "irs", "receita-federal", "9gag", "agario-candle", "australia", "austria", "ayy-lmao", "bait", "bangladesh", "belgium", "berlusconi", "blatter", "boris", "bosnia", "botswana", "brazil", "bulgaria", "bush", "byzantium", "cambodia", "canada", "chavez", "chile", "china", "cia", "clinton", "confederate", "croatia", "cuba", "denmark", "dilma", "earth", "estonia", "european-union", "facebook", "facepunch", "feminism", "fidel", "finland", "france", "french-kingdom", "german-empire", "germany", "greece", "hillary", "hollande", "hungary", "imperial-japan", "india", "indiana", "iran", "iraq", "ireland", "italy", "jamaica", "japan", "kc", "kim-jong-un", "latvia", "lithuania", "luxembourg", "maldivas", "mars", "matriarchy", "merkel", "mexico", "nasa", "netherlands", "nigeria", "north-korea", "norway", "obama", "origin", "pakistan", "palin", "patriarchy", "peru", "pewdiepie", "piccolo", "pokerface", "portugal", "prodota", "prussia", "putin", "qing-dynasty", "quebec", "queen", "reddit", "romania"];
 
+var emoticonicons = {
+    ':)': 'smile.svg',
+    ';)': 'wink.svg',
+    '=)': 'smirk.svg',
+    ':D': 'grin.svg',
+    'X-D': 'xgrin.svg',
+    '=D': 'joy.svg',
+    ':(': 'sad.svg',
+    ';(': 'cry.svg',
+    ':P': 'tongue.svg',
+    ';P': 'tonguew.svg',
+    ':*': 'kiss.svg',
+    '$)': 'smileh.svg',
+    '<3': 'heart.svg',
+    '8=)': 'cool.svg',
+    ':o': 'astonished.svg',
+    '(:|': 'sweat.svg',
+    ':|': 'neutral.svg',
+    ':\\': 'unamused.svg',
+    ':@': 'pouting.svg',
+    '|-)': 'sleep.svg',
+    '^_^': 'relaxed.svg',
+    '-_-': 'expressionless.svg',
+    '$_$': 'money.svg',
+    'O:)': 'angel.svg',
+    '3:)': 'devil.svg',
+    '(poop)': 'poo.svg',
+    '(fuck)': 'finger.svg',
+    '(clap)': 'clap.svg',
+    '(ok)': 'ok.svg',
+    '(victory)': 'victory.svg',
+    '(y)': 'thumb.svg',
+    '(n)': 'thumbd.svg',
+
+    '(angry)': 'newangry.svg',
+    '(clown)': 'newclown.svg',
+    '(crazy)': 'newcrazy.svg',
+    '(devil)': 'newdevil.svg',
+    '(devil2)': 'newdevil2.svg',
+    '(fb)': 'newfb.svg',
+    '(google)': 'newgplus.svg',
+    '(ghost)': 'newghost.svg',
+    '(heel)': 'newheel.svg',
+    '(kiss)': 'newkiss.svg',
+    '(lipstick)': 'newlipstick.svg',
+    //				'(rage)': 'newrage.svg',
+    '(teacher)': 'newteacher.svg',
+    '(together)': 'newtogether.svg',
+    '(toothy)': 'newtoothy.svg',
+    '(baby)': 'newbaby.svg',
+    '(wow)': 'newwow.svg'
+}
 var thelegendmodproject = function(t, e, i) {
     //here starts ogario
     (function(i) {
@@ -1052,58 +1104,6 @@ var thelegendmodproject = function(t, e, i) {
                 '\'': '&#39;',
                 '/': '&#x2F;'
             },
-            d = {
-                ':)': 'smile.svg',
-                ';)': 'wink.svg',
-                '=)': 'smirk.svg',
-                ':D': 'grin.svg',
-                'X-D': 'xgrin.svg',
-                '=D': 'joy.svg',
-                ':(': 'sad.svg',
-                ';(': 'cry.svg',
-                ':P': 'tongue.svg',
-                ';P': 'tonguew.svg',
-                ':*': 'kiss.svg',
-                '$)': 'smileh.svg',
-                '<3': 'heart.svg',
-                '8=)': 'cool.svg',
-                ':o': 'astonished.svg',
-                '(:|': 'sweat.svg',
-                ':|': 'neutral.svg',
-                ':\\': 'unamused.svg',
-                ':@': 'pouting.svg',
-                '|-)': 'sleep.svg',
-                '^_^': 'relaxed.svg',
-                '-_-': 'expressionless.svg',
-                '$_$': 'money.svg',
-                'O:)': 'angel.svg',
-                '3:)': 'devil.svg',
-                '(poop)': 'poo.svg',
-                '(fuck)': 'finger.svg',
-                '(clap)': 'clap.svg',
-                '(ok)': 'ok.svg',
-                '(victory)': 'victory.svg',
-                '(y)': 'thumb.svg',
-                '(n)': 'thumbd.svg',
-
-                '(angry)': 'newangry.svg',
-                '(clown)': 'newclown.svg',
-                '(crazy)': 'newcrazy.svg',
-                '(devil)': 'newdevil.svg',
-                '(devil2)': 'newdevil2.svg',
-                '(fb)': 'newfb.svg',
-                '(google)': 'newgplus.svg',
-                '(ghost)': 'newghost.svg',
-                '(heel)': 'newheel.svg',
-                '(kiss)': 'newkiss.svg',
-                '(lipstick)': 'newlipstick.svg',
-                //				'(rage)': 'newrage.svg',
-                '(teacher)': 'newteacher.svg',
-                '(together)': 'newtogether.svg',
-                '(toothy)': 'newtoothy.svg',
-                '(baby)': 'newbaby.svg',
-                '(wow)': 'newwow.svg'
-            },
             p = [{
                 name: "imgur.com",
                 url: "https://imgur.com/",
@@ -1145,12 +1145,12 @@ var thelegendmodproject = function(t, e, i) {
                     'teammatesIndColor': '#ffffff',
                     'cursorTrackingColor': '#ffffff',
                     'splitRangeColor': '#ffffff',
-                    'enemyBSTEDColor': '#BE00FF', //Sonia2
-                    'enemyBSTEColor': '#8000ff', //Sonia2
+                    'enemyBSTEDColor': '#8000ff', //Sonia2
+                    'enemyBSTEColor': '#BE00FF', //Sonia2
                     'enemyBColor': '#FF0A00', //Sonia2
                     'enemySColor': '#00C8FF', //Sonia2
-                    'enemySSTEColor': '#64FF00', //Sonia2
-                    'enemySSTEDColor': '#048245', //Sonia2
+                    'enemySSTEColor': '#048245', //Sonia2
+                    'enemySSTEDColor': '#64FF00', //Sonia2
                     'safeAreaColor': '#ffffff',
                     'dangerAreaColor': '#bf00aa',
                     'namesFont': 'ubuntu-bold',
@@ -1565,12 +1565,12 @@ var thelegendmodproject = function(t, e, i) {
                 'teammatesIndColor': '#ffffff',
                 'cursorTrackingColor': '#ffffff',
                 'splitRangeColor': '#ffffff',
-                'enemyBSTEDColor': '#BE00FF', //Sonia2
-                'enemyBSTEColor': '#8000ff', //Sonia2
+                'enemyBSTEDColor': '#8000ff', //Sonia2
+                'enemyBSTEColor': '#BE00FF', //Sonia2
                 'enemyBColor': '#FF0A00', //Sonia2
                 'enemySColor': '#00C8FF', //Sonia2
-                'enemySSTEColor': '#64FF00', //Sonia2
-                'enemySSTEDColor': '#048245', //Sonia2
+                'enemySSTEColor': '#048245', //Sonia2
+                'enemySSTEDColor': '#64FF00', //Sonia2
                 'ghostCellsColor': '#ffffff',
                 'safeAreaColor': '#ffffff',
                 'dangerAreaColor': '#bf00aa',
@@ -2936,9 +2936,10 @@ var thelegendmodproject = function(t, e, i) {
                             o = checktypeImgVid;
                         o.src = t;
                         // o = new Image();
-                        o.crossOrigin = 'anonymous', o.onload = function() {
-                            i.changeSkinPreview(o, e);
-                        };
+                        o.crossOrigin = 'anonymous',
+                            o.onload = function() {
+                                i.changeSkinPreview(o, e);
+                            };
                     }
                 }
             },
@@ -3102,9 +3103,9 @@ var thelegendmodproject = function(t, e, i) {
                     $("body").append('<ul id="messages"></ul>'),
                     $("body").append('<div id="message-box"><div id="chat-emoticons"></div><div id="message-menu"><a href="#" class="chat-sound-notifications ogicon-volume-high"></a><a href="#" class="chat-active-users ogicon-user-check"></a><a href="#" class="chat-muted-users ogicon-user-minus"></a><a href="#" class="show-chat-emoticons ogicon-smile"></a></div><input type="text" id="message" class="form-control" placeholder="' +
                         h.enterChatMsg + '..." maxlength="80"></div>'),
-                    $("body").append('<div id="chat-box"></div>'), d){
-                    if (d.hasOwnProperty(t)) {
-                        $("#chat-emoticons").append('<img src="https://jimboy3100.github.io/banners/emoticons/' + d[t] + '" alt="' + t + '" class="emoticon">');
+                    $("body").append('<div id="chat-box"></div>'), emoticonicons){
+                    if (emoticonicons.hasOwnProperty(t)) {
+                        $("#chat-emoticons").append('<img src="https://jimboy3100.github.io/banners/emoticons/' + emoticonicons[t] + '" alt="' + t + '" class="emoticon">');
                     }
                 }
                 $("body").append('<div id="exp-imp"><div id="exp-imp-menu"><button id="close-exp-imp" class="btn btn-danger">' + h.close + '</button></div><div id="exp-imp-settings"></div></div>'),
@@ -3656,7 +3657,7 @@ var thelegendmodproject = function(t, e, i) {
                 } else {
                     t[e] = new Image();
                 }
-                t[e].crossOrigin = 'anonymous';
+                t[e].crossOrigin = 'Anonymous';
                 t[e]['onload'] = function() {
                     this.complete &&
                     this.width &&
@@ -3666,7 +3667,19 @@ var thelegendmodproject = function(t, e, i) {
                     (i.cacheQueue.push(e),
                     1 == i.cacheQueue.length &&
                     i.cacheSkin(i.customSkinsCache));
-                }, t[e].src = e;
+                },
+                    t[e]['onerror'] = function() {
+                        //console.log("error loading image: "+ e);
+                        if (e.includes(window.EnvConfig.config_url)){
+                            e= "https://jimboy3100.github.io/vanillaskins/" + e.split('/').pop(); //if CORS policy on miniclip images, use other source
+                            //console.log("new destination is:" + e);
+                            ogarminimapdrawer.customSkinsMap[window.lastusednameforskin] = e;
+                            ogarminimapdrawer.loadSkin(t, e);
+                            return e;
+
+                        }
+                    };
+                t[e].src = e;
             },
             'cacheSkin': function(t) {
                 //console.log(t);  //////// return the image src
@@ -3859,7 +3872,7 @@ var thelegendmodproject = function(t, e, i) {
                 this.miniMapSectors = null;
             },
             'drawSelectedCell': function(t) {
-                i.play && i.playerSplitCells > 1 && (v.splitRange || v.oppColors || v.oppRings || v.showStatsSTE) && (t.fillStyle = '#FFFFFF', t.globalAlpha = this.selectBiggestCell ? 0.6 : 0.3, t.beginPath(), t.arc(0x30, 15, 6, 0, this.pi2, false), t.closePath(), t.fill(), t.globalAlpha = this.selectBiggestCell ? 0.3 : 0.6, t.beginPath(), t.arc(60, 15, 4, 0, this.pi2, false), t.closePath(), t.fill());
+                i.play && i.playerSplitCells > 1 && (v.splitRange || v.oppColors || v.oppRings || v.showStatsSTE) && (t.fillStyle = '#FFFFFF', t.globalAlpha = this.selectBiggestCell ? 0.6 : 0.3, t.beginPath(), t.arc(48, 15, 6, 0, this.pi2, false), t.closePath(), t.fill(), t.globalAlpha = this.selectBiggestCell ? 0.3 : 0.6, t.beginPath(), t.arc(60, 15, 4, 0, this.pi2, false), t.closePath(), t.fill());
             },
             'dTok': function(t, e) {
                 t.font = g.miniMapFontWeight + ' ' + (g.miniMapTop - 6) + 'px ' + g.miniMapFontFamily, t.textAlign = 'right', t.textBaseline = 'top', t.fillText(atob(this['token']), e, 7);
@@ -4085,7 +4098,7 @@ var thelegendmodproject = function(t, e, i) {
                     case 1:
                         this['sendPlayerUpdate']();
                         break;
-                    case 21:
+                    case 20:
                         this['updateTeamPlayer'](t);
                         break;
                     case 30:
@@ -4178,11 +4191,12 @@ var thelegendmodproject = function(t, e, i) {
                         s.setUint16(o, 0, true), o += 2;
                     }
                     var e = 41;
-                    e += 2 *ogarcopythelb.nick.length, e += 2 * ogarcopythelb.skinURL.length;
+                    var nk=ogarcopythelb.skinURL; //Sonia3
+                    e += 2 *ogarcopythelb.nick.length, e += 2 * nk.length;
                     var s = this.createView(e);
-                    s.setUint8(0, 21), s.setUint32(1, this.playerID, true);
+                    s.setUint8(0, 20), s.setUint32(1, this.playerID, true);
                     var o = 5;
-                    t(ogarcopythelb.nick), t(ogarcopythelb.skinURL), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
+                    t(ogarcopythelb.nick), t(nk), t(ogarcopythelb.color), t(i.playerColor), this['sendBuffer'](s);
                 }
             },
             'sendPlayerPosition': function() {
@@ -4256,8 +4270,8 @@ var thelegendmodproject = function(t, e, i) {
                 var i = t.getUint32(1, true);
                 var s = 5;
                 var o = e();
-                console.log("TEST PASSED")
                 // var sk = e(); //Sonia3
+                // // console.log("RECEIVED RAS:", sk)
                 // var cd = sk.slice(-3,-1);
                 // var code=-1;
                 // if(cd!="LG"){
@@ -4272,12 +4286,11 @@ var thelegendmodproject = function(t, e, i) {
                 var r = e();
                 var l = ":party" === this.gameMode ? o + r : o;
                 var h = this.checkPlayerID(i);
-                var code=-1;
                 if (null !== h) {
                     this.teamPlayers[h].nick = o;
                     this.teamPlayers[h].skinID = l;
                     this.teamPlayers[h].skinURL = a;
-                    if (code>=0) this.teamPlayers[h].lbgpi = code;
+                    // if (code>=0) this.teamPlayers[h].lbgpi = code;
                     this.teamPlayers[h].setColor(r, n);
                 } else {
                     var c = new function(envId, cb, i, s) {
@@ -4500,7 +4513,7 @@ var thelegendmodproject = function(t, e, i) {
                 //return String(t).replace(/\&lt\;3/g, '<3').replace(/℄/g, '℄ Legend Clan').replace(/(O\:\)|3\:\)|8\=\)|\:\)|\;\)|\=\)|\:D|X\-D|\=D|\:\(|\;\(|\:P|\;P|\:\*|\$\)|\<3|\:o|\(\:\||\:\||\:\\|\:\@|\|\-\)|\^\_\^|\-\_\-|\$\_\$|\(poop\)|\(fuck\)|\(clap\)|\(ok\)|\(victory\)|\(y\)|\(n\)|\(angry\)|\(clown\)|\(crazy\)|\(devil\)|\(devil2\)|\(fb\)|\(google\)|\(ghost\)|\(heel\)|\(kiss\)|\(lipstick\)|\(rage\)|\(teacher\)|\(together\)|\(toothy\)|\(evil\)|\(baby\)|\(wow\))/g, function(t) {
                 return String(t).replace(/\&lt\;3/g, '<3').replace(/℄/g, '℄ Legend Clan').replace(/(O\:\)|3\:\)|8\=\)|\:\)|\;\)|\=\)|\:D|X\-D|\=D|\:\(|\;\(|\:P|\;P|\:\*|\$\)|\<3|\:o|\(\:\||\:\||\:\\|\:\@|\|\-\)|\^\_\^|\-\_\-|\$\_\$|\(poop\)|\(fuck\)|\(clap\)|\(ok\)|\(victory\)|\(y\)|\(n\)|\(angry\)|\(clown\)|\(crazy\)|\(devil\)|\(devil2\)|\(fb\)|\(google\)|\(ghost\)|\(heel\)|\(kiss\)|\(lipstick\)|\(rage\)|\(teacher\)|\(together\)|\(toothy\)|\(evil\)|\(baby\)|\(wow\))/g, function(t) {
                     //console.log(d[t]);
-                    return '<img src=\"https://jimboy3100.github.io/banners/emoticons/' + d[t] + '\" alt=\"' + t + '\" class=\"emoticon\">';
+                    return '<img src=\"https://jimboy3100.github.io/banners/emoticons/' + emoticonicons[t] + '\" alt=\"' + t + '\" class=\"emoticon\">';
                 });
 
             },
@@ -5668,7 +5681,7 @@ var thelegendmodproject = function(t, e, i) {
             'connect': function(t) {
                 console.log('[Legend mod Express] Connecting to game server:', t);
                 var i = this;
-                console.log("Testing vectorSRX3..")
+                console.log("Testing vectorFGX..")
                 window.legendmod.vnr=0; //Sonia3
                 window.legendmod.bgpi=4; //Sonia3
                 window.legendmod.lbgpi=4; //Sonia3
@@ -6457,6 +6470,7 @@ var thelegendmodproject = function(t, e, i) {
                                                 console.log("[Legend mod Express] " + LowerCase(y) + " skin found. Skin registered");
                                                 core.registerSkin(y, null, "https://jimboy3100.github.io/agario/live/flags/" + LowerCase(y) + ".png", null);
                                             } else {
+                                                window.lastusednameforskin=y;
                                                 ogarminimapdrawer.customSkinsMap[y] = "https://configs-web.agario.miniclippt.com/live/" + window.agarversion + window.EquippableSkins[player].image;
                                                 ogarminimapdrawer.loadSkin(ogarminimapdrawer.customSkinsCache, "https://configs-web.agario.miniclippt.com/live/" + window.agarversion + window.EquippableSkins[player].image);
                                             }
