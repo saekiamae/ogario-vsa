@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM712..")
+                console.log("[Legend mod Express] Testing vectorM713..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4194,7 +4194,7 @@ var thelegendmodproject = function(t, e, i) {
                         this.getSuperLegendSDATA(s);
                         break;
                     case "Q":
-                        this.getSLGQinfo(t);
+                        this.getSLGQinfo(s);
                         break;
                 }
             },
