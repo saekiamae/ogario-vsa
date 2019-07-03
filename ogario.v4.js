@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM4..")
+                console.log("[Legend mod Express] Testing vectorM5..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -7168,7 +7168,7 @@ break;
                     var fi = window.legendmod3.teamPlayers;
                     for (var fii=0;fii<fi.length;fii++){
                         var fc = fi[fii];
-                        for (i = 0; i < fc.dcells.length; i++) {
+                        if (fc.dcells) for (i = 0; i < fc.dcells.length; i++) {
 
                             if (defaultmapsettings.jellyPhisycs) {
                                 fc.dcells[i].updateNumPoints();
