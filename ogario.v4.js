@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM713..")
+                console.log("[Legend mod Express] Testing vectorM714..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4409,10 +4409,8 @@ var thelegendmodproject = function(t, e, i) {
             'getSLGQinfo': function (t) {
                 var ids = this.getSLGID(t);
                 var id = this.checkPlayerID(ids);
-                console.log("package id",ids)
                 if (null == id) return;
                 var msg = this.getSLGVal(t);
-                console.log("AAAAD")
                 //Get viruses
                 var vlen = this.unpackInt(msg.slice(0, 1));
                 msg = msg.slice(1);
@@ -4425,7 +4423,7 @@ var thelegendmodproject = function(t, e, i) {
                     msg = msg.slice(7);
                     var x = this.getreal(fx,0);
                     var y = this.getreal(fy,1);
-                    tempx.push(new ogarbasicassembly(di, x, y, ds, null, false, true, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots))
+                    temp.push(new ogarbasicassembly(di, x, y, ds, null, false, true, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots))
                 }
                 this.teamPlayers[id].dvirs = temp;
 
@@ -4444,7 +4442,7 @@ var thelegendmodproject = function(t, e, i) {
                     var y = this.getreal(fy,1);
                     tempx.push(new ogarbasicassembly(di, x, y, ds, null, false, false, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots))
                 }
-                this.teamPlayers[id].dcells = temp;
+                this.teamPlayers[id].dcells = tempx;
                 var today = new Date();
                 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" + today.getMilliseconds();
                 console.log("Package Received:",time)
