@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM71..")
+                console.log("[Legend mod Express] Testing vectorM711..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4163,7 +4163,6 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'handleSLGMessage': function (t) {
-                console.log("REV");
                 this['SLGHandler'](t.data);
             },
             'readMessage': function (t) {
@@ -4188,14 +4187,15 @@ var thelegendmodproject = function(t, e, i) {
             },
             //Sonia4
             'SLGHandler': function (t) {
-                console.log("SIV");
                 var s = this.unpackSLG(t);
                 if (s == null) return;
+                console.log("VF")
                 switch (t.charAt(0)) {
                     case "R":
                         this.getSuperLegendSDATA(s);
                         break;
                     case "Q":
+                        console.log("RT")
                         this.getSLGQinfo(t);
                         break;
                 }
@@ -4404,16 +4404,17 @@ var thelegendmodproject = function(t, e, i) {
 
                 this.sendSLG("Q", msg);
 
-                var today = new Date();
-                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" + today.getMilliseconds();
-                console.log("Package Sent:",time)
+                // var today = new Date();
+                // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" + today.getMilliseconds();
+                // console.log("Package Sent:",time)
             },
             'getSLGQinfo': function (t) {
                 var ids = this.getSLGID(t);
                 var id = this.checkPlayerID(ids);
+                console.log("TYFFF")
                 if (null == id) return;
                 var msg = this.getSLGVal(t);
-
+                console.log("AAAAD")
                 //Get viruses
                 var vlen = this.unpackInt(msg.slice(0, 1));
                 msg = msg.slice(1);
