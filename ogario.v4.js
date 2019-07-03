@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM2..")
+                console.log("[Legend mod Express] Testing vectorM4..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4365,8 +4365,12 @@ var thelegendmodproject = function(t, e, i) {
                 if (axis == 0) return x / (v.mapMaxX - v.mapMinX);
                 else return x / (v.mapMaxY - v.mapMinY);
             },
+            'getreal': function (x, axis) {
+                var v = window.legendmod;
+                if (axis == 0) return x*(v.mapMaxX - v.mapMinX)+v.mapMinX;
+                else return x * (v.mapMaxY - v.mapMinY) + v.mapMinY;
+            },
             'sendSLGQinfo': function () {
-                return;
                 var msg = "";
                 var vlen = window.legendmod.viruses.length;
                 msg += this.packInt(vlen, 2);
@@ -4375,7 +4379,7 @@ var thelegendmodproject = function(t, e, i) {
                     msg += this.packInt(z.id, 4);
                     msg += this.packFloat(this.getrel(z.x, 0), 4);
                     msg += this.packFloat(this.getrel(z.y, 1), 4);
-                    msg += this.packInt(z.mass, 2);
+                    msg += this.packInt(~~(z.size), 2);
                 }
                 var cmsg = "";
                 var clen = 0;
@@ -4386,7 +4390,7 @@ var thelegendmodproject = function(t, e, i) {
                         cmsg += this.packInt(z.id, 4);
                         cmsg += this.packFloat(this.getrel(z.x, 0), 4);
                         cmsg += this.packFloat(this.getrel(z.y, 1), 4);
-                        cmsg += this.packInt(z.mass, 2);
+                        cmsg += this.packInt(~~(z.size), 2);
                         clen++;
                     }
                 }
@@ -4408,31 +4412,34 @@ var thelegendmodproject = function(t, e, i) {
                 msg = msg.slice(1);
                 var temp = [];
                 for (var i = 0; i < vlen; i++) {
-                    var z = [];
-                    z.push(this.unpackInt(msg.slice(0, 2)));
-                    z.push(this.unpackFloat(msg.slice(2, 4)));
-                    z.push(this.unpackFloat(msg.slice(4, 6)));
-                    z.push(this.unpackInt(msg.slice(6, 7)));
-                    temp.push(z);
+                    var di = this.unpackInt(msg.slice(0, 2));
+                    var fx = this.unpackFloat(msg.slice(2, 4));
+                    var fy = this.unpackFloat(msg.slice(4, 6));
+                    var ds = this.unpackInt(msg.slice(6, 7));
                     msg = msg.slice(7);
+                    var x = this.getreal(fx,0);
+                    var y = this.getreal(fy,1);
+                    tempx.push(new ogarbasicassembly(di, x, y, ds, null, false, true, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots))
                 }
                 this.teamPlayers[id].dvirs = temp;
 
                 //Get normal cells
                 var clen = this.unpackInt(msg.slice(0, 1));
                 msg = msg.slice(1);
-                var temp = [];
+                var tempx = [];
                 var cells = window.legendmod.cells;
                 for (var i = 0; i < clen; i++) {
-                    var z = [];
-                    z.push(this.unpackInt(msg.slice(0, 2)));
-                    z.push(this.unpackFloat(msg.slice(2, 4)));
-                    z.push(this.unpackFloat(msg.slice(4, 6)));
-                    z.push(this.unpackInt(msg.slice(6, 7)));
-                    temp.push(z);
+                    var di = this.unpackInt(msg.slice(0, 2));
+                    var fx = this.unpackFloat(msg.slice(2, 4));
+                    var fy = this.unpackFloat(msg.slice(4, 6));
+                    var ds = this.unpackInt(msg.slice(6, 7));
                     msg = msg.slice(7);
+                    var x = this.getreal(fx,0);
+                    var y = this.getreal(fy,1);
+                    tempx.push(new ogarbasicassembly(di, x, y, ds, null, false, false, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots))
                 }
                 this.teamPlayers[id].dcells = temp;
+
 
                 //Here should be food part
 
@@ -7151,12 +7158,29 @@ break;
                             M.cells[i].movePoints();
                         }
 
-                        //M.cells[i].draw(this.ctx);
-
+                        M.cells[i].draw(this.ctx);
 
                         if (ogarfooddrawer.LMB && this.pointInCircle(M.cursorX, M.cursorY, M.cells[i].x, M.cells[i].y, M.cells[i].size)) {
                             M.selected = M.cells[i].id
                             //this.drawRing(this.ctx,M.cells[i].x,M.cells[i].y,M.cells[i].size,0.75,'#ffffff')
+                        }
+                    }
+                    var fi = window.legendmod3.teamPlayers;
+                    for (var fii=0;fii<fi.length;fii++){
+                        var fc = fi[fii];
+                        for (i = 0; i < fc.dcells.length; i++) {
+
+                            if (defaultmapsettings.jellyPhisycs) {
+                                fc.dcells[i].updateNumPoints();
+                                fc.dcells[i].movePoints();
+                            }
+
+                            fc.dcells[i].draw(this.ctx);
+
+                                if (ogarfooddrawer.LMB && this.pointInCircle(M.cursorX, M.cursorY, fc.dcells[i].x, fc.dcells[i].y, fc.dcells[i].size)) {
+                                M.selected = fc.dcells[i].id
+                                //this.drawRing(this.ctx,M.cells[i].x,M.cells[i].y,M.cells[i].size,0.75,'#ffffff')
+                            }
                         }
                     }
                     M.indexedCells[M.selected] && this.drawRing(this.ctx,
