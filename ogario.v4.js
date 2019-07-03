@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM5..")
+                console.log("[Legend mod Express] Testing vectorM6..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4439,7 +4439,9 @@ var thelegendmodproject = function(t, e, i) {
                     tempx.push(new ogarbasicassembly(di, x, y, ds, null, false, false, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots))
                 }
                 this.teamPlayers[id].dcells = temp;
-
+                var today = new Date();
+                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" + today.getMilliseconds();
+                console.log("Package Received:",time)
 
                 //Here should be food part
 
