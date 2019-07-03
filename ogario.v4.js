@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM6..")
+                console.log("[Legend mod Express] Testing vectorM7..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4400,6 +4400,10 @@ var thelegendmodproject = function(t, e, i) {
                 //Here should be food part
 
                 this.sendSLG("Q", msg);
+
+                var today = new Date();
+                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+ ":" + today.getMilliseconds();
+                console.log("Package Sent:",time)
             },
             'getSLGQinfo': function (t) {
                 var ids = this.getSLGID(t);
@@ -4445,7 +4449,6 @@ var thelegendmodproject = function(t, e, i) {
 
                 //Here should be food part
 
-                this.sendSLG("Q", msg);
             },
             //Sonia4
             'sendSuperLegendSDATA': function () {
