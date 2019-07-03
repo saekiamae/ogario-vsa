@@ -3992,7 +3992,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorK8..")
+                console.log("[Legend mod Express] Testing vectorK9..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4309,7 +4309,7 @@ var thelegendmodproject = function(t, e, i) {
 
             },
             'unpackInt': function(s) {
-                
+
             },
             'sendSLGQinfo': function() {
                 var c = window.legendmod.cells;
