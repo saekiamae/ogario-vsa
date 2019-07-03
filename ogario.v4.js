@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM711..")
+                console.log("[Legend mod Express] Testing vectorM712..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4189,13 +4189,11 @@ var thelegendmodproject = function(t, e, i) {
             'SLGHandler': function (t) {
                 var s = this.unpackSLG(t);
                 if (s == null) return;
-                console.log("VF")
                 switch (t.charAt(0)) {
                     case "R":
                         this.getSuperLegendSDATA(s);
                         break;
                     case "Q":
-                        console.log("RT")
                         this.getSLGQinfo(t);
                         break;
                 }
@@ -4411,7 +4409,7 @@ var thelegendmodproject = function(t, e, i) {
             'getSLGQinfo': function (t) {
                 var ids = this.getSLGID(t);
                 var id = this.checkPlayerID(ids);
-                console.log("TYFFF")
+                console.log("package id",ids)
                 if (null == id) return;
                 var msg = this.getSLGVal(t);
                 console.log("AAAAD")
