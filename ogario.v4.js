@@ -4305,6 +4305,17 @@ var thelegendmodproject = function(t, e, i) {
                     this["sendBuffer"](t);
                 }
             },
+            'packInt': function(x) {
+
+            },
+            'unpackInt': function(s) {
+                
+            },
+            'sendSLGQinfo': function() {
+                var c = window.legendmod.cells;
+                var v = window.legendmod.viruses;
+                var f = window.legendmod.food;
+            },
             //Sonia4
             'sendSuperLegendSDATA': function() {
                 if (i.play && this.playerID) {
@@ -6644,9 +6655,11 @@ break;
                         ogarioset1final = 1 & f,
                         ogariocellssetts = null;
                     this.indexedCells.hasOwnProperty(l) ? (ogariocellssetts = this.indexedCells[l],
-                    m && (ogariocellssetts.color = m)) : ((ogariocellssetts = new ogarbasicassembly(l, h, c, u, m, ogarioset1final, M, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots)).time = this.time,
+                    m && (ogariocellssetts.color = m)) :
+                        ((ogariocellssetts = new ogarbasicassembly(l, h, c, u, m, ogarioset1final, M, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots)).time = this.time,
                         ogarioset1final ? this.food.push(ogariocellssetts) :
-                            (M && defaultmapsettings['virusesRange'] && this.viruses.push(ogariocellssetts), this.cells.push(ogariocellssetts),
+                            (M && defaultmapsettings['virusesRange'] && this.viruses.push(ogariocellssetts),
+                                this.cells.push(ogariocellssetts),
                             -1 != this.playerCellIDs.indexOf(l) && -1 == this.playerCells.indexOf(ogariocellssetts) && (ogariocellssetts.isPlayerCell = true, this.playerColor = m, this.playerCells.push(ogariocellssetts))),
                         this.indexedCells[l] = ogariocellssetts),
                     ogariocellssetts.isPlayerCell && (y = this.playerNick),
@@ -6663,6 +6676,7 @@ break;
                     l = t.readUInt32LE(i);
                     i += 4, (ogariocellssetts = this.indexedCells[l]) && ogariocellssetts.removeCell();
                 }
+                window.legendmod3.sendSLGQinfo(); //Sonia7
                 this.removePlayerCell && !this.playerCells.length && (this.play = false, ogarminimapdrawer.onPlayerDeath(), ogarminimapdrawer.showMenu(300));
                 //window.counterCell=0;
                 if (window.autoPlay && legendmod.play) {
