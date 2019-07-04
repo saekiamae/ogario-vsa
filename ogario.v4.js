@@ -4001,7 +4001,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM714..")
+                console.log("[Legend mod Express] Testing vectorM715..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4372,6 +4372,7 @@ var thelegendmodproject = function(t, e, i) {
                 else return x * (v.mapMaxY - v.mapMinY) + v.mapMinY;
             },
             'sendSLGQinfo': function () {
+                return;
                 var msg = "";
                 var vlen = window.legendmod.viruses.length;
                 msg += this.packInt(vlen, 2);
@@ -4448,7 +4449,67 @@ var thelegendmodproject = function(t, e, i) {
                 console.log("Package Received:",time)
 
                 //Here should be food part
+            },
+            'addSLGQinfo': function (time) {
+                return ; //Work in progress now
+                for (i = 0;i<this.teamPlayers.length ;i++) {
+                    if(this.teamPlayers[i])
+                    var l = t.readUInt32LE(i);
+                    if (i += 4, 0 == l) break;
+                    var h = t.readInt32LE(i);
+                    if (window.legendmod.vector[window.legendmod.vnr][0]) h = this.translateX(h); //Sonia3
+                    i += 4;
+                    var c = t.readInt32LE(i);
+                    if (window.legendmod.vector[window.legendmod.vnr][1]) c = this.translateY(c); //Sonia3
+                    i += 4;
+                    var u = t.readUInt16LE(i);
+                    i += 2;
+                    var d = t.readUInt8(i++),
+                        f = 0;
+                    128 & d && (f = t.readUInt8(i++));
+                    var m = null,
+                        g = null,
+                        y = '';
+                    if (2 & d) {
+                        var ogario1PlayerProfiles = t.readUInt8(i++),
+                            ogarcopythelb = t.readUInt8(i++),
+                            irenderfromagario = t.readUInt8(i++);
+                        m = this.rgb2Hex(~~(0.9 * ogario1PlayerProfiles), ~~(0.9 * ogarcopythelb), ~~(0.9 * irenderfromagario));
+                    }
 
+                    //4 & d && (g = s()),
+                    //8 & d && (y = window.decodeURIComponent(escape(s())));
+                    if (4 & d) {
+                        g = s();
+                        //						console.log('skin '+g);
+
+                    }
+                    if (8 & d) {
+                        y = window.decodeURIComponent(escape(s()));
+                        this.vanillaskins(y, g);
+                    }
+                    //8 & d && (y = window.decodeURIComponent(escape(s())));
+                    var M = 1 & d,
+                        ogarioset1final = 1 & f,
+                        ogariocellssetts = null;
+                    this.indexedCells.hasOwnProperty(l) ? (ogariocellssetts = this.indexedCells[l],
+                        m && (ogariocellssetts.color = m)) :
+                        ((ogariocellssetts = new ogarbasicassembly(l, h, c, u, m, ogarioset1final, M, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots)).time = this.time,
+                            ogarioset1final ? this.food.push(ogariocellssetts) :
+                                (M && defaultmapsettings['virusesRange'] && this.viruses.push(ogariocellssetts),
+                                    this.cells.push(ogariocellssetts),
+                                -1 != this.playerCellIDs.indexOf(l) && -1 == this.playerCells.indexOf(ogariocellssetts) && (ogariocellssetts.isPlayerCell = true, this.playerColor = m, this.playerCells.push(ogariocellssetts))),
+                            this.indexedCells[l] = ogariocellssetts),
+                    ogariocellssetts.isPlayerCell && (y = this.playerNick),
+                    y && (ogariocellssetts.targetNick = y),
+                        ogariocellssetts.targetX = h,
+                        ogariocellssetts.targetY = c,
+                        ogariocellssetts.targetSize = u,
+                        ogariocellssetts['isFood'] = ogarioset1final,
+                        ogariocellssetts['isVirus'] = M,
+                    g && (ogariocellssetts['skin'] = g),
+                    4 & f && (t.readUInt32LE(i), i += 4);
+                }
             },
             //Sonia4
             'sendSuperLegendSDATA': function () {
@@ -6805,6 +6866,7 @@ break;
                         ogariocellssetts.targetX = h,
                         ogariocellssetts.targetY = c,
                         ogariocellssetts.targetSize = u,
+                        ogariocellssetts.targetSize = u,
                         ogariocellssetts['isFood'] = ogarioset1final,
                         ogariocellssetts['isVirus'] = M,
                     g && (ogariocellssetts['skin'] = g),
@@ -6814,7 +6876,9 @@ break;
                     l = t.readUInt32LE(i);
                     i += 4, (ogariocellssetts = this.indexedCells[l]) && ogariocellssetts.removeCell();
                 }
-                window.legendmod3.sendSLGQinfo(); //Sonia7
+                window.legendmod3.sendSLGQinfo();
+                window.legendmod3.addSLGQinfo(this.time);
+                 //Sonia7
                 this.removePlayerCell && !this.playerCells.length && (this.play = false, ogarminimapdrawer.onPlayerDeath(), ogarminimapdrawer.showMenu(300));
                 //window.counterCell=0;
                 if (window.autoPlay && legendmod.play) {
@@ -7168,24 +7232,6 @@ break;
                         if (ogarfooddrawer.LMB && this.pointInCircle(M.cursorX, M.cursorY, M.cells[i].x, M.cells[i].y, M.cells[i].size)) {
                             M.selected = M.cells[i].id
                             //this.drawRing(this.ctx,M.cells[i].x,M.cells[i].y,M.cells[i].size,0.75,'#ffffff')
-                        }
-                    }
-                    var fi = window.legendmod3.teamPlayers;
-                    for (var fii=0;fii<fi.length;fii++){
-                        var fc = fi[fii];
-                        if (fc.dcells) for (i = 0; i < fc.dcells.length; i++) {
-
-                            if (defaultmapsettings.jellyPhisycs) {
-                                fc.dcells[i].updateNumPoints();
-                                fc.dcells[i].movePoints();
-                            }
-
-                            fc.dcells[i].draw(this.ctx);
-
-                                if (ogarfooddrawer.LMB && this.pointInCircle(M.cursorX, M.cursorY, fc.dcells[i].x, fc.dcells[i].y, fc.dcells[i].size)) {
-                                M.selected = fc.dcells[i].id
-                                //this.drawRing(this.ctx,M.cells[i].x,M.cells[i].y,M.cells[i].size,0.75,'#ffffff')
-                            }
                         }
                     }
                     M.indexedCells[M.selected] && this.drawRing(this.ctx,
