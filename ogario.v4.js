@@ -3995,7 +3995,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM81..")
+                console.log("[Legend mod Express] Testing vectorM82..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4533,15 +4533,16 @@ var thelegendmodproject = function(t, e, i) {
                             if (this.nick.length > 0) {
                                 options.font = defaultSettings.miniMapNickFontWeight + " " + defaultSettings.miniMapNickSize + "px " + defaultSettings.miniMapNickFontFamily;
                                 options.textAlign = "center";
+                                var namead = "";
+                                if (this.lbgpi < 0) namead += " [ℵ]";
                                 if (defaultSettings.miniMapNickStrokeSize > 0) {
                                     options.lineWidth = defaultSettings.miniMapNickStrokeSize;
                                     options.strokeStyle = defaultSettings.miniMapNickStrokeColor;
-                                    var namead = "";
-                                    if (this.lbgpi < 0) namead += " [ℵ]";
+
                                     options.strokeText(this.nick + namead, w, h - (2 * defaultSettings.miniMapTeammatesSize + 2));
                                 }
                                 options.fillStyle = defaultSettings.miniMapNickColor;
-                                options.fillText(this.nick, w, h - (2 * defaultSettings.miniMapTeammatesSize + 2));
+                                options.fillText(this.nick+namead, w, h - (2 * defaultSettings.miniMapTeammatesSize + 2));
                             }
                             options.beginPath();
                             options.arc(w, h, defaultSettings.miniMapTeammatesSize, 0, this.pi2, false);
