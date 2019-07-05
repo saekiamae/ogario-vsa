@@ -3995,7 +3995,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM715..")
+                console.log("[Legend mod Express] Testing vectorM72..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4363,7 +4363,6 @@ var thelegendmodproject = function(t, e, i) {
                 else return x * (v.mapMaxY - v.mapMinY) + v.mapMinY;
             },
             'sendSLGQinfo': function() {
-                return;
                 var msg = "";
                 var vlen = window.legendmod.viruses.length;
                 msg += this.packInt(vlen, 2);
@@ -4442,64 +4441,15 @@ var thelegendmodproject = function(t, e, i) {
                 //Here should be food part
             },
             'addSLGQinfo': function(time) {
-                return; //Work in progress now
-                for (i = 0; i < this.teamPlayers.length; i++) {
-                    if (this.teamPlayers[i])
-                        var l = t.readUInt32LE(i);
-                    if (i += 4, 0 == l) break;
-                    var h = t.readInt32LE(i);
-                    if (window.legendmod.vector[window.legendmod.vnr][0]) h = this.translateX(h); //Sonia3
-                    i += 4;
-                    var c = t.readInt32LE(i);
-                    if (window.legendmod.vector[window.legendmod.vnr][1]) c = this.translateY(c); //Sonia3
-                    i += 4;
-                    var u = t.readUInt16LE(i);
-                    i += 2;
-                    var d = t.readUInt8(i++),
-                        f = 0;
-                    128 & d && (f = t.readUInt8(i++));
-                    var m = null,
-                        g = null,
-                        y = '';
-                    if (2 & d) {
-                        var ogario1PlayerProfiles = t.readUInt8(i++),
-                            ogarcopythelb = t.readUInt8(i++),
-                            irenderfromagario = t.readUInt8(i++);
-                        m = this.rgb2Hex(~~(0.9 * ogario1PlayerProfiles), ~~(0.9 * ogarcopythelb), ~~(0.9 * irenderfromagario));
+                //return; //Work in progress now
+                for (var i = 0; i < this.teamPlayers.length; i++) {
+                    if (this.teamPlayers[i].dcells){
+                        var ar = this.teamPlayers[i].dcells;
+                        for (var j=0;j<ar.length;j++){
+                            window.legendmod.indexedCells[ar[j].id]=ar[j];
+                            window.legendmod.cells.push(ar[j]);
+                        }
                     }
-
-                    //4 & d && (g = s()),
-                    //8 & d && (y = window.decodeURIComponent(escape(s())));
-                    if (4 & d) {
-                        g = s();
-                        //						console.log('skin '+g);
-
-                    }
-                    if (8 & d) {
-                        y = window.decodeURIComponent(escape(s()));
-                        this.vanillaskins(y, g);
-                    }
-                    //8 & d && (y = window.decodeURIComponent(escape(s())));
-                    var LM = 1 & d,
-                        ogarioset1final = 1 & f,
-                        ogariocellssetts = null;
-                    this.indexedCells.hasOwnProperty(l) ? (ogariocellssetts = this.indexedCells[l],
-                        m && (ogariocellssetts.color = m)) :
-                        ((ogariocellssetts = new ogarbasicassembly(l, h, c, u, m, ogarioset1final, LM, false, defaultmapsettings.shortMass, defaultmapsettings.virMassShots)).time = this.time,
-                            ogarioset1final ? this.food.push(ogariocellssetts) :
-                                (LM && defaultmapsettings['virusesRange'] && this.viruses.push(ogariocellssetts),
-                                    this.cells.push(ogariocellssetts),
-                                -1 != this.playerCellIDs.indexOf(l) && -1 == this.playerCells.indexOf(ogariocellssetts) && (ogariocellssetts.isPlayerCell = true, this.playerColor = m, this.playerCells.push(ogariocellssetts))),
-                            this.indexedCells[l] = ogariocellssetts),
-                    ogariocellssetts.isPlayerCell && (y = this.playerNick),
-                    y && (ogariocellssetts.targetNick = y),
-                        ogariocellssetts.targetX = h,
-                        ogariocellssetts.targetY = c,
-                        ogariocellssetts.targetSize = u,
-                        ogariocellssetts['isFood'] = ogarioset1final,
-                        ogariocellssetts['isVirus'] = LM,
-                    g && (ogariocellssetts['skin'] = g),
-                    4 & f && (t.readUInt32LE(i), i += 4);
                 }
             },
             //Sonia4
