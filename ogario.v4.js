@@ -3995,7 +3995,7 @@ var thelegendmodproject = function(t, e, i) {
                     this.closeConnection();
                 this.flushData();
                 this.setParty();
-                console.log("[Legend mod Express] Testing vectorM8..")
+                console.log("[Legend mod Express] Testing vectorM81..")
                 console.log('[Legend mod Express] Connecting to server'),
                     this.privateMode && this.privateIP ? this.socket = new WebSocket(this.privateIP) : this.socket = new WebSocket(this.publicIP),
                     this.socket['ogarioWS'] = true,
@@ -4624,7 +4624,7 @@ var thelegendmodproject = function(t, e, i) {
                 if (e.alive) {
                     this.top5.push({
                         "id": e.id,
-                        "nick": namead + e.nick,
+                        "nick": e.nick,
                         "x": e.x,
                         "y": e.y,
                         "mass": e.mass,
